@@ -1,0 +1,145 @@
+
+<!-- SPLASH SCREEN (img injected by build script) -->
+<div id="splash" onclick="closeSplash()">
+  <img id="splash-img" src="" alt="Vidhatri — Bio Enzyme Natural Products">
+  <div id="splash-overlay">
+    <button class="spl-btn" onclick="closeSplash()">✨ &nbsp;Enter Store &nbsp;→</button>
+    <div class="spl-sub">Auto-entering in <span id="scount">5</span> seconds</div>
+    <div class="spl-bar"><div class="spl-prog" id="spl-prog"></div></div>
+  </div>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div id="pay-ov" onclick="closePay(event)">
+<div id="pay-modal">
+  <div class="pm-hdr">
+    <button class="pm-close" onclick="closePay()">✕</button>
+    <div class="pm-hdr-left">
+      <h3>Secure Checkout</h3>
+      <p>Vidhatri Bio Enzyme · OTP Verified · PCI DSS</p>
+    </div>
+    <div style="text-align:right">
+      <div class="pm-hdr-amt" id="pm-amt">₹0</div>
+      <div style="font-size:.6rem;opacity:.65;margin-top:.1rem">Total incl. taxes</div>
+    </div>
+  </div>
+  <div class="pm-body">
+    <div class="pm-tabs">
+      <button class="pm-tab on" onclick="pmTab('upi',this)">📱 UPI</button>
+      <button class="pm-tab" onclick="pmTab('card',this)">💳 Card</button>
+      <button class="pm-tab" onclick="pmTab('nb',this)">🏦 Net Banking</button>
+      <button class="pm-tab" onclick="pmTab('cod',this)">💵 COD</button>
+      <button class="pm-tab" onclick="pmTab('wa',this)">💬 WhatsApp</button>
+    </div>
+    <div class="pm-panel on" id="pm-upi">
+      <span class="pm-lbl">Quick Pay with App</span>
+      <div class="upi-apps">
+        <div class="ua" onclick="selUPI(this,'gpay')"><span class="ua-ico">🟢</span><span class="ua-name">GPay</span></div>
+        <div class="ua" onclick="selUPI(this,'phonepe')"><span class="ua-ico">🟣</span><span class="ua-name">PhonePe</span></div>
+        <div class="ua" onclick="selUPI(this,'paytm')"><span class="ua-ico">🔵</span><span class="ua-name">Paytm</span></div>
+        <div class="ua" onclick="selUPI(this,'bhim')"><span class="ua-ico">🟠</span><span class="ua-name">BHIM</span></div>
+        <div class="ua" onclick="selUPI(this,'amazon')"><span class="ua-ico">🟡</span><span class="ua-name">Amazon</span></div>
+      </div>
+      <div class="upi-or">or enter UPI ID directly</div>
+      <span class="pm-lbl">UPI ID / VPA *</span>
+      <input class="pm-inp" id="upi-inp" placeholder="yourname@gpay or 9876543210@paytm" oninput="chkUPI(this)">
+      <div class="upi-val" id="upi-msg"></div>
+      <div class="ib ib-g" style="margin-top:.9rem;font-size:.78rem">📲 After clicking Pay, open your UPI app and approve the collect request within 5 minutes.</div>
+    </div>
+    <div class="pm-panel" id="pm-card">
+      <div class="card-nets"><span class="cn cn-v">VISA</span><span class="cn cn-m">MC</span><span class="cn cn-r">RuPay</span><span class="cn cn-a">AMEX</span></div>
+      <div class="card-prev" id="card-prev" style="background:linear-gradient(135deg,#1a5c2a,#2d7a42)">
+        <div class="cp-chip"></div>
+        <div class="cp-num" id="cp-num">•••• &nbsp;•••• &nbsp;•••• &nbsp;••••</div>
+        <div class="cp-row">
+          <div><div style="font-size:.58rem;opacity:.7;text-transform:uppercase;letter-spacing:.07em">Card Holder</div><div class="val" id="cp-name">YOUR NAME</div></div>
+          <div><div style="font-size:.58rem;opacity:.7;text-transform:uppercase;letter-spacing:.07em">Expires</div><div class="val" id="cp-exp">MM/YY</div></div>
+        </div>
+      </div>
+      <div style="margin-bottom:.8rem"><span class="pm-lbl">Card Number *</span><input class="pm-inp" id="card-num" placeholder="1234  5678  9012  3456" maxlength="19" oninput="fmtCard(this)" onkeyup="detectNet(this)"></div>
+      <div style="margin-bottom:.8rem"><span class="pm-lbl">Card Holder Name *</span><input class="pm-inp" id="card-name" placeholder="RAVI KUMAR" oninput="document.getElementById('cp-name').textContent=this.value.toUpperCase()||'YOUR NAME'" style="text-transform:uppercase"></div>
+      <div class="pm-row2">
+        <div><span class="pm-lbl">Expiry (MM/YY) *</span><input class="pm-inp" id="card-exp" placeholder="MM / YY" maxlength="7" oninput="fmtExp(this)"></div>
+        <div><span class="pm-lbl">CVV *</span><input class="pm-inp" id="card-cvv" placeholder="•••" maxlength="4" type="password"></div>
+      </div>
+      <div class="ib ib-g" style="margin-top:.8rem;font-size:.76rem">🔒 3D Secure OTP authentication required. Card details are end-to-end encrypted. PCI DSS Level 1 compliant.</div>
+    </div>
+    <div class="pm-panel" id="pm-nb">
+      <span class="pm-lbl" style="margin-bottom:.7rem;display:block">Select Your Bank</span>
+      <div class="bank-grid">
+        <div class="bank-item" onclick="selBank(this,'SBI')"><span class="bank-ico">🏛️</span>State Bank of India</div>
+        <div class="bank-item" onclick="selBank(this,'HDFC')"><span class="bank-ico">🏦</span>HDFC Bank</div>
+        <div class="bank-item" onclick="selBank(this,'ICICI')"><span class="bank-ico">🏦</span>ICICI Bank</div>
+        <div class="bank-item" onclick="selBank(this,'AXIS')"><span class="bank-ico">🏦</span>Axis Bank</div>
+        <div class="bank-item" onclick="selBank(this,'PNB')"><span class="bank-ico">🏛️</span>Punjab National Bank</div>
+        <div class="bank-item" onclick="selBank(this,'KOTAK')"><span class="bank-ico">🏦</span>Kotak Mahindra</div>
+        <div class="bank-item" onclick="selBank(this,'BOB')"><span class="bank-ico">🏛️</span>Bank of Baroda</div>
+        <div class="bank-item" onclick="selBank(this,'CANARA')"><span class="bank-ico">🏛️</span>Canara Bank</div>
+      </div>
+      <div class="ib ib-o" style="margin-top:.9rem;font-size:.77rem">🏦 You will be securely redirected to your bank's net banking portal for OTP-based authentication.</div>
+    </div>
+    <div class="pm-panel" id="pm-cod">
+      <div style="text-align:center;padding:1.5rem 0">
+        <div style="font-size:4rem;margin-bottom:1rem">💵</div>
+        <h3 style="font-family:'Playfair Display',serif;color:var(--brown);margin-bottom:.5rem">Cash on Delivery</h3>
+        <p style="font-size:.85rem;color:var(--text2);line-height:1.7">Pay in cash when your Vidhatri order arrives.<br>A <strong>₹30 handling fee</strong> will be added.</p>
+        <div style="background:var(--cream2);border-radius:var(--r);padding:1rem;margin-top:1.2rem;text-align:left;font-size:.8rem;color:var(--text2)">
+          <div style="margin-bottom:.35rem">✓ Available pan-India for all pin codes</div>
+          <div style="margin-bottom:.35rem">✓ Keep exact change ready for delivery partner</div>
+          <div>✓ No online payment or bank account needed</div>
+        </div>
+      </div>
+    </div>
+    <div class="pm-panel" id="pm-wa">
+      <div style="text-align:center;padding:1.5rem 0">
+        <div style="font-size:4rem;margin-bottom:1rem">💬</div>
+        <h3 style="font-family:'Playfair Display',serif;color:var(--brown);margin-bottom:.5rem">WhatsApp Pay</h3>
+        <p style="font-size:.85rem;color:var(--text2);line-height:1.7;margin-bottom:1rem">A secure UPI payment link will be sent to your WhatsApp after order placement.</p>
+        <div style="font-size:.82rem;color:var(--text2);background:var(--g5);border:1px solid var(--g4);border-radius:var(--r);padding:.9rem;text-align:left">
+          <div style="margin-bottom:.3rem">📲 Payment link sent to: <strong id="wa-mobile">your mobile</strong></div>
+          <div>⏱️ Link valid for: <strong>30 minutes</strong></div>
+        </div>
+      </div>
+    </div>
+    <div id="otp-screen" style="display:none">
+      <div style="text-align:center;padding:1rem 0">
+        <div style="font-size:2.8rem;margin-bottom:.75rem">🔐</div>
+        <h3 style="font-family:'Playfair Display',serif;color:var(--brown);margin-bottom:.4rem">Verify OTP</h3>
+        <p style="font-size:.8rem;color:var(--text2);margin-bottom:1.2rem;line-height:1.6">6-digit OTP sent to <strong id="otp-dest"></strong></p>
+        <div class="otp-wrap">
+          <input class="otp-d" maxlength="1" id="o0" oninput="nxt(this,0)" inputmode="numeric">
+          <input class="otp-d" maxlength="1" id="o1" oninput="nxt(this,1)" inputmode="numeric">
+          <input class="otp-d" maxlength="1" id="o2" oninput="nxt(this,2)" inputmode="numeric">
+          <input class="otp-d" maxlength="1" id="o3" oninput="nxt(this,3)" inputmode="numeric">
+          <input class="otp-d" maxlength="1" id="o4" oninput="nxt(this,4)" inputmode="numeric">
+          <input class="otp-d" maxlength="1" id="o5" oninput="nxt(this,5)" inputmode="numeric">
+        </div>
+        <div class="otp-timer" id="otp-timer">Resend in <span id="otp-cd">30</span>s</div>
+        <button id="otp-resend" style="display:none;font-size:.78rem;color:var(--g1);font-weight:700;background:none;border:none;cursor:pointer" onclick="resendOTP()">📨 Resend OTP</button>
+        <button class="pay-btn" style="margin-top:1.2rem" onclick="verifyOTP()">✓ Verify & Confirm Payment</button>
+        <button onclick="cancelOTP()" style="margin-top:.6rem;font-size:.76rem;color:var(--text3);background:none;border:none;cursor:pointer;display:block;width:100%">← Back to payment methods</button>
+      </div>
+    </div>
+    <div class="sec-badge">🛡️ 256-bit SSL · PCI DSS Level 1 · OTP Authenticated · Data Never Stored</div>
+  </div>
+  <div class="pm-footer">
+    <button class="pay-btn" id="main-pay-btn" onclick="initPay()">🔒 Pay Securely — <span id="pay-btn-amt">₹0</span></button>
+    <div class="pm-trust">🏦 Powered by Razorpay &nbsp;·&nbsp; 🔐 OTP Verified &nbsp;·&nbsp; ✓ Instant Confirmation</div>
+  </div>
+</div>
+</div>
+
+<!-- PROCESSING OVERLAY -->
+<div id="proc-ov">
+<div class="proc-box">
+  <div class="proc-spin"></div>
+  <div class="proc-text" id="proc-text">Processing Payment...</div>
+  <div class="proc-sub" id="proc-sub">Please do not close this window</div>
+  <div class="proc-steps">
+    <div class="p-step active" id="ps1"><div class="p-step-ico">1</div><span>Initiating secure connection</span></div>
+    <div class="p-step" id="ps2"><div class="p-step-ico">2</div><span>Verifying payment details</span></div>
+    <div class="p-step" id="ps3"><div class="p-step-ico">3</div><span>Confirming with bank</span></div>
+    <div class="p-step" id="ps4"><div class="p-step-ico">4</div><span>Creating your order</span></div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hand Wash — Vidhatri Bio Enzyme</title>
+<link rel="stylesheet" href="../shared.css">
+<style>
+.vol-selector { margin: 1.2rem 0; }
+.vol-selector-label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-light); margin-bottom: 0.6rem; }
+.add-actions { display: flex; gap: 0.8rem; }
+.add-actions .btn { flex: 1; text-align: center; }
+.product-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.shelf-life-bar { background: var(--cream-dark); border-radius: 50px; height: 8px; margin-top: 0.5rem; overflow: hidden; }
+.shelf-life-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--gold)); border-radius: 50px; transition: width 1s ease; }
+.payment-icons { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; }
+.payment-icon { background: var(--cream); border: 1.5px solid var(--border); border-radius: var(--radius-sm); padding: 0.4rem 0.9rem; font-size: 0.78rem; font-weight: 700; color: var(--text-mid); }
+.delivery-steps { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem; }
+.delivery-step { display: flex; align-items: center; gap: 0.75rem; font-size: 0.88rem; color: var(--text-mid); }
+.delivery-step::before { content: "✓"; color: var(--green); font-weight: 900; font-size: 1rem; }
+.related-products { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+.related-card { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius-md); padding: 1.2rem; text-align: center; text-decoration: none; color: inherit; transition: all 0.25s; }
+.related-card:hover { box-shadow: 0 8px 24px var(--shadow); transform: translateY(-3px); }
+.related-card .rc-emoji { font-size: 2.5rem; }
+.related-card h5 { font-size: 0.85rem; font-weight: 700; color: var(--brown-dark); margin: 0.4rem 0 0.2rem; }
+.related-card p { font-size: 0.75rem; color: var(--text-light); }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="../index.html" class="nav-logo-wrap">
+    <span class="nav-logo-icon">🍋</span>
+    <div><span class="nav-logo-text">Vidhatri</span><span class="nav-logo-sub">Bio Enzyme Products</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html#bioenzyme">Bio Enzyme</a></li>
+    <li><a href="../index.html#products">All Products</a></li>
+    <li><a href="../index.html#order-cta">Order</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="../cart.html" class="cart-btn">🛒 Cart <span class="cart-count" style="display:none">0</span></a>
+  </div>
+</nav>
+
+<!-- PRODUCT HERO -->
+<section class="product-hero">
+  <div class="product-visual" data-reveal>
+    <div class="product-visual-emoji">🖐️</div>
+  </div>
+
+  <div class="product-info" data-reveal data-delay="1">
+    <p class="product-info-breadcrumb">
+      <a href="../index.html">Home</a> › <a href="../index.html#products">Products</a> › Hand Wash
+    </p>
+    <div class="product-badges">
+      <span class="badge badge-green">🌿 Bio Enzyme</span>
+      <span class="badge badge-gold">Personal Care</span>
+      <span class="badge badge-brown">🫙 Handcrafted</span>
+    </div>
+    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--brown-dark);line-height:1.1;margin-bottom:0.6rem">Hand Wash</h1>
+    <p style="font-size:1.05rem;color:var(--text-mid);line-height:1.8;margin-bottom:1rem">Gentle enzyme foam that cleanses and conditions hands. Handcrafted with live bio enzymes, zero synthetic chemicals.</p>
+
+    <div class="product-price-block">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
+        <div><span class="price-current">₹299</span><span class="price-unit">/ <span class="selected-vol">400 ml</span></span></div>
+        <span class="badge badge-green">Free delivery ₹499+</span>
+      </div>
+      <div class="vol-selector">
+        <p class="vol-selector-label">Choose Size</p>
+        <table class="vol-table">
+          <thead><tr><th>Volume</th><th>Price</th><th>Per ml</th><th>Savings</th></tr></thead>
+          <tbody><tr class="vol-row" data-vol="200 ml" data-price="179"><td>200 ml</td><td>₹179</td><td>₹0.9/ml</td><td>Base price</td></tr>
+<tr class="vol-row best-val" data-vol="400 ml" data-price="299"><td>400 ml</td><td>₹299</td><td>₹0.75/ml</td><td>Save 16%</td></tr>
+<tr class="vol-row" data-vol="800 ml" data-price="549"><td>800 ml</td><td>₹549</td><td>₹0.69/ml</td><td>Save 23%</td></tr>
+<tr class="vol-row" data-vol="1 Litre Refill" data-price="649"><td>1 Litre Refill</td><td>₹649</td><td>₹649.0/ml</td><td>Base price</td></tr>
+</tbody>
+        </table>
+      </div>
+      <div style="display:flex;align-items:center;gap:1.2rem;margin:1.2rem 0">
+        <label style="font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light)">Qty</label>
+        <div class="qty-selector">
+          <button class="qty-btn qty-minus">−</button>
+          <input type="number" class="qty-input" value="1" min="1">
+          <button class="qty-btn qty-plus">+</button>
+        </div>
+      </div>
+      <div class="add-actions">
+        <button class="btn btn-primary" id="add-to-cart-btn">🛒 Add to Cart</button>
+        <button class="btn btn-green" id="buy-now-btn">⚡ Buy Now</button>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;font-size:0.82rem;color:var(--text-light)">
+      <span>🕒 Shelf Life: <strong style="color:var(--text-dark)">18 months unopened</strong></span>
+      <span>🚚 Delivery: <strong style="color:var(--green)">1–3 Days</strong></span>
+    </div>
+  </div>
+</section>
+
+<!-- DETAIL TABS -->
+<section class="section-pad" style="background:var(--white)">
+  <div class="detail-tabs-group">
+    <div class="detail-tabs">
+      <button class="detail-tab active" data-tab="tab-ingredients">Ingredients</button>
+      <button class="detail-tab" data-tab="tab-how">How It Works</button>
+      <button class="detail-tab" data-tab="tab-validity">Validity & Storage</button>
+      <button class="detail-tab" data-tab="tab-delivery">Delivery</button>
+      <button class="detail-tab" data-tab="tab-payment">Payment</button>
+      <button class="detail-tab" data-tab="tab-volume">Volume Pricing</button>
+    </div>
+
+    <!-- INGREDIENTS -->
+    <div id="tab-ingredients" class="tab-panel active">
+      <h3 style="font-family:'Playfair Display',serif;color:var(--brown-dark);margin-bottom:1rem">What's Inside</h3>
+      <p style="color:var(--text-mid);margin-bottom:1.5rem;line-height:1.8">Made from: <strong>Fermented papaya enzyme extract combined with Decyl Glucoside (sugar-based cleanser), Aloe Vera Juice, and Coconut Oil. Scented with pure Lemon Grass essential oil.</strong></p>
+      <div class="ingredient-tags"><span class="ing-tag">Fermented Papaya Enzyme</span><span class="ing-tag">Decyl Glucoside</span><span class="ing-tag">Aloe Vera Juice (Organic)</span><span class="ing-tag">Coconut Oil</span><span class="ing-tag">Lemongrass Essential Oil</span><span class="ing-tag">Xanthan Gum (Natural Thickener)</span><span class="ing-tag">Distilled Water</span></div>
+      <div style="margin-top:2rem;padding:1.5rem;background:var(--green-pale);border-radius:var(--radius-md);border:1px solid rgba(46,125,82,0.2)">
+        <p style="font-size:0.88rem;color:var(--green);font-weight:700;margin-bottom:0.3rem">🌿 No Hidden Chemicals</p>
+        <p style="font-size:0.85rem;color:var(--text-mid);line-height:1.7">This product contains zero synthetic fragrances, parabens, sulfates (SLS/SLES), phosphates, chlorine bleach, optical brighteners, or artificial preservatives. What you see on the label is everything that's in the bottle.</p>
+      </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div id="tab-how" class="tab-panel">
+      <h3 style="font-family:'Playfair Display',serif;color:var(--brown-dark);margin-bottom:1.2rem">How It Works</h3>
+      <div class="hiw-steps"><div class="hiw-step">
+          <div class="hiw-num">1</div>
+          <div class="hiw-text"><h5>Enzyme Cleansing</h5><p>Papaya proteases break down protein-based contaminants on skin, including bacteria, sweat proteins, and food residue.</p></div>
+        </div>
+<div class="hiw-step">
+          <div class="hiw-num">2</div>
+          <div class="hiw-text"><h5>Sugar Surfactant Foam</h5><p>Decyl glucoside derived from corn and coconut creates a rich lather without stripping natural skin oils.</p></div>
+        </div>
+<div class="hiw-step">
+          <div class="hiw-num">3</div>
+          <div class="hiw-text"><h5>Aloe Healing</h5><p>Aloe vera gel soothes and hydrates, counteracting any dryness and leaving hands soft and moisturised.</p></div>
+        </div>
+<div class="hiw-step">
+          <div class="hiw-num">4</div>
+          <div class="hiw-text"><h5>Natural Antibacterial</h5><p>Lemongrass oil provides a natural antimicrobial layer without synthetic preservatives or triclosan.</p></div>
+        </div>
+</div>
+    </div>
+
+    <!-- VALIDITY -->
+    <div id="tab-validity" class="tab-panel">
+      <h3 style="font-family:'Playfair Display',serif;color:var(--brown-dark);margin-bottom:1rem">Shelf Life & Storage</h3>
+      <p style="color:var(--text-mid);line-height:1.8;margin-bottom:1.5rem">18 months unopened. 6 months after first use. Store at room temperature below 30°C.</p>
+      <div style="background:var(--cream-dark);border-radius:var(--radius-md);padding:1.5rem">
+        <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light);margin-bottom:0.5rem">Shelf Life Indicator</p>
+        <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:var(--text-mid);margin-bottom:0.4rem"><span>Manufacture</span><span>Best Before</span></div>
+        <div class="shelf-life-bar"><div class="shelf-life-fill" id="shelf-fill" style="width:70%"></div></div>
+        <p style="font-size:0.78rem;color:var(--text-light);margin-top:0.5rem">Manufacture date is printed on bottle base. Batch-coded for full traceability.</p>
+      </div>
+      <div style="margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+        <div class="card" style="padding:1.2rem"><p style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);font-weight:700">✅ Store</p><p style="font-size:0.88rem;color:var(--text-mid);margin-top:0.3rem">Cool, dark place · Below 30°C · Away from direct sunlight</p></div>
+        <div class="card" style="padding:1.2rem"><p style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--brown);font-weight:700">⚠️ Avoid</p><p style="font-size:0.88rem;color:var(--text-mid);margin-top:0.3rem">Heat above 40°C · Direct sunlight · Freezing temperatures</p></div>
+      </div>
+    </div>
+
+    <!-- DELIVERY -->
+    <div id="tab-delivery" class="tab-panel">
+      <h3 style="font-family:'Playfair Display',serif;color:var(--brown-dark);margin-bottom:1rem">Delivery & Shipping</h3>
+      <p style="color:var(--text-mid);line-height:1.8;margin-bottom:1.5rem">Pan-India delivery in 1–3 days. Orders above ₹499 ship free. Refill packs available for subscription orders.</p>
+      <div class="delivery-steps">
+        <div class="delivery-step">Free delivery on all orders above ₹499</div>
+        <div class="delivery-step">Same-day dispatch on orders placed before 2 PM (Mon–Sat)</div>
+        <div class="delivery-step">1–3 business days delivery pan-India</div>
+        <div class="delivery-step">Tracking link sent to your WhatsApp / mobile after dispatch</div>
+        <div class="delivery-step">Secure, eco-friendly packaging — minimal plastic</div>
+        <div class="delivery-step">Bulk orders (5L+) packed in reinforced double-wall cartons</div>
+      </div>
+      <div style="margin-top:1.5rem;padding:1.5rem;background:var(--cream-dark);border-radius:var(--radius-md)">
+        <h4 style="font-family:'Playfair Display',serif;color:var(--brown-dark);margin-bottom:0.8rem">📍 Delivery Address</h4>
+        <p style="font-size:0.85rem;color:var(--text-mid);margin-bottom:1rem">Your delivery address is saved securely during checkout. You can also save multiple addresses — home, office, or gift to a friend.</p>
+        <a href="../cart.html" class="btn btn-green" style="font-size:0.85rem;padding:0.6rem 1.5rem">Enter Delivery Address in Cart →</a>
+      </div>
+    </div>
+
+    <!-- PAYMENT -->
+    <div id="tab-payment" class="tab-panel">
+      <h3 style="font-family:'Playfair Display',serif;color:var(--brown-dark);margin-bottom:1rem">Payment Methods</h3>
+      <p style="color:var(--text-mid);line-height:1.8;margin-bottom:1rem">We accept all major payment methods. All digital payments are secure and encrypted. Cash on Delivery available with ₹30 handling fee.</p>
+      <div class="payment-icons"><span class="payment-icon">UPI</span><span class="payment-icon">Net Banking</span><span class="payment-icon">Cards</span><span class="payment-icon">Cash on Delivery</span><span class="payment-icon">WhatsApp Pay</span></div>
+      <div style="margin-top:2rem;padding:1.5rem;background:var(--cream);border-radius:var(--radius-md);border:1px solid var(--border)">
+        <p style="font-size:0.88rem;color:var(--text-mid);line-height:1.7">🔒 <strong style="color:var(--brown-dark)">100% Secure Payments.</strong> Your payment details are never stored on our servers. All transactions are processed via secure encrypted gateways. We also support WhatsApp-based orders with payment via UPI link.</p>
+      </div>
+    </div>
+
+    <!-- VOLUME PRICING -->
+    <div id="tab-volume" class="tab-panel">
+      <h3 style="font-family:'Playfair Display',serif;color:var(--brown-dark);margin-bottom:0.5rem">Volume Pricing & Bulk Deals</h3>
+      <p style="color:var(--text-mid);font-size:0.9rem;margin-bottom:1.5rem">Buy more, save more. Bigger packs offer significant per-ml savings. 🔥 marks the best value pack.</p>
+      <table class="vol-table" style="margin-bottom:1.5rem">
+        <thead><tr><th>Volume</th><th>Price</th><th>Per ml / per g</th><th>Best For</th></tr></thead>
+        <tbody><tr class="vol-row" data-vol="200 ml" data-price="179"><td>200 ml</td><td>₹179</td><td>₹0.9</td><td>Single use / trial</td></tr>
+<tr class="vol-row best-val" data-vol="400 ml" data-price="299"><td>400 ml</td><td>₹299</td><td>₹0.75</td><td>Regular household</td></tr>
+<tr class="vol-row" data-vol="800 ml" data-price="549"><td>800 ml</td><td>₹549</td><td>₹0.69</td><td>Large family</td></tr>
+<tr class="vol-row" data-vol="1 Litre Refill" data-price="649"><td>1 Litre Refill</td><td>₹649</td><td>₹649.0</td><td>Bulk / monthly</td></tr>
+</tbody>
+      </table>
+      <div style="padding:1.2rem;background:#FDF0C8;border-radius:var(--radius-md);border:1px solid var(--cream-mid)">
+        <p style="font-size:0.88rem;color:var(--brown-dark);font-weight:700;margin-bottom:0.3rem">🏪 Commercial / Bulk Orders</p>
+        <p style="font-size:0.84rem;color:var(--text-mid)">Restaurants, hotels, and commercial kitchens can contact us for custom bulk pricing on 10L+ orders. Call <a href="tel:+918367066110" style="color:var(--green);font-weight:700">+91 83670 66110</a> or WhatsApp for a quote.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RELATED PRODUCTS -->
+<section class="section-pad-sm" style="background:var(--cream)">
+  <p class="section-label">Also Try</p>
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--brown-dark);margin-bottom:1.5rem">More Bio Enzyme Products</h3>
+  <div class="related-products"><a href="dish-wash.html" class="related-card"><div class="rc-emoji">🍽️</div><h5>Dish Wash Liquid</h5><p>Bio Enzyme</p></a>
+<a href="soap.html" class="related-card"><div class="rc-emoji">🧼</div><h5>Bathing Soap</h5><p>Bio Enzyme</p></a>
+<a href="floor-cleaner.html" class="related-card"><div class="rc-emoji">🧹</div><h5>Floor Cleaner</h5><p>Bio Enzyme</p></a>
+<a href="toilet-cleaner.html" class="related-card"><div class="rc-emoji">🚽</div><h5>Toilet Cleaner</h5><p>Bio Enzyme</p></a>
+</div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="../index.html" class="nav-logo-wrap" style="text-decoration:none">
+        <span class="nav-logo-icon">🍋</span>
+        <div><span class="nav-logo-text">Vidhatri</span><span class="nav-logo-sub">Bio Enzyme Products</span></div>
+      </a>
+      <p>Bio enzyme household cleaners — handcrafted from rescued citrus peels. Zero chemicals, maximum care.</p>
+    </div>
+    <div class="footer-col"><h5>Products</h5><ul>
+      <li><a href="dish-wash.html">Dish Wash</a></li>
+      <li><a href="hand-wash.html">Hand Wash</a></li>
+      <li><a href="soap.html">Bathing Soap</a></li>
+      <li><a href="floor-cleaner.html">Floor Cleaner</a></li>
+      <li><a href="toilet-cleaner.html">Toilet Cleaner</a></li>
+    </ul></div>
+    <div class="footer-col"><h5>More</h5><ul>
+      <li><a href="laundry-liquid.html">Laundry Liquid</a></li>
+      <li><a href="glass-cleaner.html">Glass Cleaner</a></li>
+      <li><a href="bathroom-cleaner.html">Bathroom Cleaner</a></li>
+      <li><a href="kitchen-spray.html">Kitchen Spray</a></li>
+      <li><a href="fabric-softener.html">Fabric Softener</a></li>
+    </ul></div>
+    <div class="footer-col"><h5>Contact</h5><ul>
+      <li><a href="tel:+918367066110">+91 83670 66110</a></li>
+      <li><a href="https://wa.me/918367066110">WhatsApp</a></li>
+      <li><a href="../cart.html">View Cart</a></li>
+      <li><a href="../index.html">← Back to Home</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Vidhatri. <a href="../index.html">← Back to Home</a></span>
+    <div style="display:flex;gap:1.5rem"><a href="#">Privacy</a><a href="#">Terms</a></div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+<script src="../shared.js"></script>
+<script>
+const PRODUCT = {
+  id: 'hand-wash',
+  name: 'Hand Wash',
+  emoji: '🖐️',
+  defaultVol: '400 ml',
+  defaultPrice: 299
+};
+window._selectedVol = PRODUCT.defaultVol;
+window._selectedPrice = PRODUCT.defaultPrice;
+document.addEventListener('DOMContentLoaded', () => {
+  initVolumePricing([]);
+  setupAddToCart(PRODUCT);
+  setupBuyNow(PRODUCT);
+});
+</script>
+</body>
+</html>

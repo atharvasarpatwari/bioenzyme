@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vidhatri — Bio Enzyme Natural Products</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Nunito:wght@300;400;600;700;800;900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g1:#1a5c2a;--g2:#2d7a42;--g3:#3da056;--g4:#c8f0d0;--g5:#eaf7ed;
+  --gold:#d4a017;--gold2:#f0c040;--gold3:#fff8e1;
+  --cream:#fdfaf3;--cream2:#f4edda;--cream3:#e8d9b0;
+  --brown:#4a2c0a;--brown2:#6b3f10;
+  --text:#1a1a1a;--text2:#444;--text3:#777;--text4:#aaa;
+  --white:#fff;--border:#e0d4b8;--border2:#c8b990;
+  --red:#e53935;--orange:#f57c00;
+  --shadow:0 2px 16px rgba(26,92,42,.10);
+  --shadow2:0 8px 40px rgba(26,92,42,.18);
+  --r:8px;--r2:14px;--r3:22px;--r4:32px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;min-height:100vh}
+h1,h2,h3,h4,h5{font-family:'Playfair Display',serif;line-height:1.2}
+a{text-decoration:none;color:inherit}
+button{font-family:'Nunito',sans-serif;cursor:pointer;border:none;background:none}
+input,select,textarea{font-family:'Nunito',sans-serif;outline:none}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--cream2)}
+::-webkit-scrollbar-thumb{background:var(--g3);border-radius:3px}
+
+/* TOAST */
+#toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(100px);
+  background:var(--g1);color:#fff;padding:.65rem 1.6rem;border-radius:50px;
+  font-size:.85rem;font-weight:700;z-index:9999;transition:transform .3s;white-space:nowrap;
+  box-shadow:var(--shadow2);pointer-events:none}
+#toast.show{transform:translateX(-50%) translateY(0)}
+
+/* TOP BAR */
+.topbar{background:var(--g1);color:#fff;text-align:center;padding:.32rem 1rem;
+  font-size:.75rem;font-weight:600;letter-spacing:.03em}
+.topbar a{color:var(--gold2);text-decoration:underline;margin-left:.4rem}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:900;background:rgba(253,250,243,.97);
+  backdrop-filter:blur(18px);border-bottom:1.5px solid var(--border);transition:.3s}
+.nav.scrolled{box-shadow:var(--shadow2)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:.65rem 3vw;gap:1rem}
+.logo{display:flex;align-items:center;gap:.55rem;cursor:pointer}
+.logo-leaf{width:38px;height:38px;background:var(--g1);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:1.25rem;flex-shrink:0}
+.logo-name{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:900;
+  color:var(--g1);line-height:1}
+.logo-sub{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text3);display:block;font-family:'Nunito',sans-serif;font-weight:600}
+.nav-links{display:flex;gap:.2rem;overflow-x:auto}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-link{padding:.38rem .85rem;font-size:.78rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.06em;color:var(--text2);cursor:pointer;border-radius:50px;
+  white-space:nowrap;transition:.2s;border:1.5px solid transparent}
+.nav-link:hover,.nav-link.on{background:var(--g1);color:#fff}
+.nav-right{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
+.nav-icon{position:relative;background:none;border:none;cursor:pointer;font-size:1.25rem;
+  padding:.3rem;border-radius:50%;transition:.2s;color:var(--g1)}
+.nav-icon:hover{background:var(--g4)}
+.cart-badge{position:absolute;top:-3px;right:-3px;background:var(--red);color:#fff;
+  width:17px;height:17px;border-radius:50%;font-size:.6rem;font-weight:900;
+  display:flex;align-items:center;justify-content:center}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;
+  font-weight:800;font-size:.85rem;border-radius:50px;transition:all .22s;
+  cursor:pointer;padding:.65rem 1.5rem;border:2px solid transparent;font-family:'Nunito',sans-serif;letter-spacing:.02em}
+.btn-green{background:var(--g1);color:#fff;border-color:var(--g1)}
+.btn-green:hover{background:var(--brown);border-color:var(--brown)}
+.btn-outline{background:transparent;color:var(--g1);border-color:var(--g1)}
+.btn-outline:hover{background:var(--g1);color:#fff}
+.btn-gold{background:var(--gold);color:#fff;border-color:var(--gold)}
+.btn-gold:hover{background:var(--brown);border-color:var(--brown)}
+.btn-white{background:#fff;color:var(--g1);border-color:#fff}
+.btn-white:hover{background:var(--g4)}
+.btn-red{background:var(--red);color:#fff;border-color:var(--red)}
+.btn-sm{padding:.4rem .95rem;font-size:.75rem}
+.btn-lg{padding:.85rem 2rem;font-size:.95rem}
+.btn-xl{padding:1rem 2.4rem;font-size:1rem}
+.btn-full{width:100%}
+
+/* HERO */
+.hero{padding:96px 4vw 0;min-height:90vh;display:grid;
+  grid-template-columns:1fr 1fr;align-items:center;gap:3rem;
+  background:linear-gradient(150deg,var(--g5) 0%,var(--cream2) 55%,var(--cream3) 100%);
+  position:relative;overflow:hidden}
+.hero::after{content:'🍃';font-size:22rem;position:absolute;right:-3vw;
+  bottom:-3rem;opacity:.06;pointer-events:none;line-height:1}
+.hero-pill{display:inline-flex;align-items:center;gap:.4rem;background:var(--g1);
+  color:#fff;padding:.28rem .85rem;border-radius:50px;font-size:.7rem;
+  font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem}
+.hero-script{font-family:'Caveat',cursive;font-size:1.5rem;color:var(--gold);margin-bottom:.3rem}
+.hero-h1{font-size:clamp(2.4rem,4.5vw,4rem);font-weight:900;color:var(--brown);
+  line-height:1.08;margin-bottom:1rem}
+.hero-h1 em{font-style:italic;color:var(--g1)}
+.hero-p{font-size:1rem;color:var(--text2);line-height:1.85;margin-bottom:1.8rem;max-width:500px}
+.hero-btns{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:2rem}
+.hero-chips{display:flex;gap:.7rem;flex-wrap:wrap}
+.chip{display:flex;align-items:center;gap:.3rem;font-size:.74rem;font-weight:700;
+  color:var(--text3);padding:.28rem .75rem;background:rgba(255,255,255,.7);
+  border:1.5px solid var(--border);border-radius:50px;backdrop-filter:blur(8px)}
+.hero-visual{position:relative;z-index:1}
+.hero-prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.h-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--r3);
+  padding:1.3rem 1rem;text-align:center;cursor:pointer;transition:.25s;box-shadow:var(--shadow)}
+.h-card:hover{transform:translateY(-5px);box-shadow:var(--shadow2);border-color:var(--g3)}
+.h-card-em{font-size:3rem;display:block;margin-bottom:.5rem}
+.h-card-name{font-family:'Playfair Display',serif;font-size:.88rem;font-weight:700;color:var(--brown)}
+.h-card-price{font-size:.75rem;color:var(--g2);font-weight:700;margin-top:.18rem}
+.h-card-badge{background:var(--red);color:#fff;font-size:.58rem;font-weight:800;
+  padding:.15rem .45rem;border-radius:50px;text-transform:uppercase;margin-bottom:.4rem;display:inline-block}
+
+/* SECTION BASE */
+.sec{padding:5.5rem 4vw}
+.sec-sm{padding:3rem 4vw}
+.sec-green{background:var(--g1)}
+.sec-white{background:#fff}
+.sec-cream{background:var(--cream2)}
+.sec-dark{background:var(--brown)}
+.lbl{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.2em;
+  color:var(--g2);margin-bottom:.45rem;display:block}
+.sec-green .lbl,.sec-dark .lbl{color:var(--gold2)}
+.sh2{font-size:clamp(1.75rem,2.8vw,2.5rem);font-weight:700;color:var(--brown);margin-bottom:.5rem}
+.sec-green .sh2,.sec-dark .sh2{color:#fff}
+.sh2 em{font-style:italic;color:var(--g1)}
+.sec-green .sh2 em,.sec-dark .sh2 em{color:var(--gold2)}
+.sdesc{font-size:.95rem;color:var(--text2);line-height:1.82;max-width:580px;margin-top:.5rem}
+.sec-green .sdesc,.sec-dark .sdesc{color:rgba(255,255,255,.72)}
+.sdiv{width:44px;height:3px;background:var(--g2);border-radius:2px;margin:.6rem 0}
+.sec-green .sdiv,.sec-dark .sdiv{background:var(--gold2)}
+.tc{text-align:center}.tc .sdesc,.tc .sdiv{margin-left:auto;margin-right:auto}
+
+/* ENZYME INTRO */
+.enzyme-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.e-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.e-card{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);
+  border-radius:var(--r2);padding:1.3rem;transition:.25s}
+.e-card:hover{background:rgba(255,255,255,.17)}
+.e-card.full{grid-column:1/-1}
+.e-ico{font-size:2rem;margin-bottom:.55rem;display:block}
+.e-card h4{font-family:'Playfair Display',serif;color:#fff;font-size:.92rem;margin-bottom:.25rem}
+.e-card p{font-size:.77rem;color:rgba(255,255,255,.65);line-height:1.6}
+.enzyme-facts{display:flex;gap:1.5rem;margin-top:1.8rem;flex-wrap:wrap}
+.e-fact{text-align:center}
+.e-fact .num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold2)}
+.e-fact .lab{font-size:.7rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.08em}
+
+/* PROCESS STEPS */
+.process{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;
+  margin-top:3rem;position:relative}
+.process::before{content:'';position:absolute;top:27px;left:10%;right:10%;
+  height:2px;background:linear-gradient(90deg,var(--g4),var(--gold),var(--g4))}
+.p-step{text-align:center;position:relative;z-index:1}
+.p-circle{width:54px;height:54px;border-radius:50%;background:var(--white);
+  border:3px solid var(--gold);margin:0 auto 1rem;display:flex;align-items:center;
+  justify-content:center;font-size:1.4rem;box-shadow:0 0 0 5px var(--cream)}
+.p-step h5{font-family:'Playfair Display',serif;font-size:.82rem;color:var(--brown);
+  font-weight:700;margin-bottom:.25rem}
+.p-step p{font-size:.72rem;color:var(--text3);line-height:1.5}
+
+/* PRODUCT GRID */
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));
+  gap:1.4rem;margin-top:2.2rem}
+.prod-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--r3);
+  overflow:hidden;cursor:pointer;transition:all .28s;display:flex;flex-direction:column}
+.prod-card:hover{box-shadow:var(--shadow2);transform:translateY(-5px);border-color:var(--g3)}
+.prod-img{background:var(--g5);padding:2.2rem 1rem;text-align:center;
+  font-size:4.5rem;position:relative;transition:.3s}
+.prod-card:hover .prod-img{background:var(--g4)}
+.prod-off{position:absolute;top:.55rem;left:.55rem;background:var(--red);color:#fff;
+  font-size:.58rem;font-weight:800;padding:.18rem .5rem;border-radius:50px;
+  text-transform:uppercase;letter-spacing:.04em}
+.prod-body{padding:1rem;flex:1;display:flex;flex-direction:column}
+.prod-cat{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--g2);margin-bottom:.22rem}
+.prod-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;
+  color:var(--brown);margin-bottom:.28rem;line-height:1.25}
+.prod-tag{font-size:.75rem;color:var(--text3);line-height:1.55;margin-bottom:.75rem;flex:1}
+.prod-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
+.prod-price{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:900;color:var(--g1)}
+.prod-mrp{font-size:.7rem;color:var(--text4);text-decoration:line-through;margin-left:.22rem}
+.add-btn{background:var(--g1);color:#fff;border-radius:50px;padding:.34rem .8rem;
+  font-size:.73rem;font-weight:800;cursor:pointer;transition:.2s;border:none;font-family:'Nunito',sans-serif}
+.add-btn:hover{background:var(--brown)}
+
+/* CAT FILTER */
+.cat-pills{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.8rem;justify-content:center}
+.cat-pill{padding:.38rem 1rem;border:1.5px solid var(--border);border-radius:50px;
+  font-size:.76rem;font-weight:700;cursor:pointer;transition:.2s;background:#fff;color:var(--text2)}
+.cat-pill.on,.cat-pill:hover{background:var(--g1);color:#fff;border-color:var(--g1)}
+
+/* ECO FEATS */
+.eco-row{display:grid;grid-template-columns:repeat(5,1fr);gap:1.2rem;margin-top:2.5rem}
+.eco-card{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  border-radius:var(--r2);padding:1.5rem 1rem;text-align:center;transition:.25s}
+.eco-card:hover{background:rgba(255,255,255,.2);transform:translateY(-3px)}
+.eco-icon{font-size:2.2rem;margin-bottom:.55rem;display:block}
+.eco-card h4{font-family:'Playfair Display',serif;color:#fff;font-size:.9rem;margin-bottom:.3rem}
+.eco-card p{font-size:.74rem;color:rgba(255,255,255,.65);line-height:1.58}
+
+/* TESTIMONIALS */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem}
+.t-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--r2);
+  padding:1.5rem;transition:.25s}
+.t-card:hover{box-shadow:var(--shadow2);transform:translateY(-3px)}
+.t-stars{color:var(--gold);font-size:.95rem;letter-spacing:.05em;margin-bottom:.7rem}
+.t-q{font-family:'Playfair Display',serif;font-style:italic;font-size:.92rem;
+  color:var(--text2);line-height:1.72;margin-bottom:1.1rem}
+.t-user{display:flex;align-items:center;gap:.6rem}
+.t-av{width:38px;height:38px;border-radius:50%;background:var(--g4);
+  display:flex;align-items:center;justify-content:center;font-size:1.2rem;
+  border:2px solid var(--g3);flex-shrink:0}
+.t-name{font-weight:800;font-size:.82rem;color:var(--brown)}
+.t-loc{font-size:.7rem;color:var(--text3)}
+
+/* CTA BAND */
+.cta-band{background:var(--g1);border-radius:var(--r3);padding:3rem 3.5rem;
+  display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;margin:0 2vw}
+.cta-btns{display:flex;gap:.7rem;white-space:nowrap}
+
+/* PRODUCT DETAIL */
+.pd-page{padding-top:70px}
+.pd-hero{background:linear-gradient(150deg,var(--g5),var(--cream2));
+  padding:2.5rem 4vw;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.pd-visual{background:#fff;border:2px solid var(--border);border-radius:var(--r3);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:3rem 2rem;text-align:center;position:sticky;top:85px}
+.pd-emoji{font-size:8rem;animation:fl 3.5s ease-in-out infinite}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.pd-vis-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;
+  color:var(--brown);margin-top:1rem}
+.pd-vis-cat{font-size:.7rem;color:var(--text3);margin-top:.2rem}
+.pd-vis-chips{display:flex;gap:.35rem;justify-content:center;margin-top:.75rem;flex-wrap:wrap}
+.vis-chip{background:var(--g4);color:var(--g1);border-radius:50px;padding:.18rem .6rem;
+  font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em}
+.pd-bc{font-size:.74rem;color:var(--text3);margin-bottom:.7rem}
+.pd-bc span{cursor:pointer;transition:.2s}
+.pd-bc span:hover{color:var(--g1)}
+.pd-badges{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:.9rem}
+.pd-badge{background:var(--g5);color:var(--g1);border:1px solid var(--g4);
+  border-radius:50px;padding:.18rem .6rem;font-size:.62rem;font-weight:800;
+  text-transform:uppercase;letter-spacing:.07em}
+.pd-h1{font-size:clamp(1.7rem,2.8vw,2.4rem);font-weight:900;color:var(--brown);margin-bottom:.4rem}
+.pd-tag{font-size:.95rem;color:var(--text2);line-height:1.75;margin-bottom:1.1rem}
+.price-box{background:var(--cream2);border-radius:var(--r2);padding:1.4rem;
+  margin-bottom:1.4rem;border:1px solid var(--border)}
+.price-row{display:flex;align-items:baseline;gap:.5rem;margin-bottom:.2rem}
+.price-now{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:900;color:var(--g1)}
+.price-mrp{font-size:.88rem;color:var(--text4);text-decoration:line-through}
+.price-save{background:var(--red);color:#fff;font-size:.62rem;font-weight:800;
+  padding:.15rem .5rem;border-radius:50px;text-transform:uppercase}
+.vol-lbl{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--text3);margin-bottom:.5rem}
+.vol-pills{display:flex;gap:.45rem;flex-wrap:wrap;margin-bottom:.9rem}
+.v-pill{padding:.38rem .95rem;border:1.5px solid var(--border);border-radius:50px;
+  font-size:.78rem;font-weight:700;cursor:pointer;transition:.2s;
+  background:#fff;color:var(--text2)}
+.v-pill.on{border-color:var(--g1);background:var(--g1);color:#fff}
+.v-pill:hover:not(.on){border-color:var(--g3);color:var(--g1)}
+.qty-row{display:flex;align-items:center;gap:.8rem;margin-bottom:.9rem}
+.qty-lbl{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--text3)}
+.qty-wrap{display:flex;align-items:center;border:1.5px solid var(--border);border-radius:50px;overflow:hidden}
+.q-btn{width:34px;height:34px;background:var(--cream2);border:none;font-size:1.1rem;
+  font-weight:800;cursor:pointer;transition:.2s;color:var(--text2)}
+.q-btn:hover{background:var(--g1);color:#fff}
+.q-val{width:42px;text-align:center;font-weight:800;font-size:.92rem;border:none;
+  background:#fff;color:var(--brown)}
+.pd-actions{display:flex;gap:.6rem;margin-bottom:.9rem}
+.pd-actions .btn{flex:1;text-align:center}
+.pd-meta{display:flex;gap:1.2rem;font-size:.76rem;color:var(--text3);flex-wrap:wrap}
+.pd-meta strong{color:var(--text2)}
+
+/* TABS */
+.tabs{margin-top:2rem}
+.tab-nav{display:flex;border-bottom:2px solid var(--border);overflow-x:auto}
+.tab-nav::-webkit-scrollbar{display:none}
+.tab-btn{padding:.6rem 1.1rem;font-size:.73rem;font-weight:800;text-transform:uppercase;
+  letter-spacing:.07em;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;
+  margin-bottom:-2px;white-space:nowrap;transition:.2s;background:none;
+  border-top:none;border-left:none;border-right:none;font-family:'Nunito',sans-serif}
+.tab-btn.on{color:var(--g1);border-bottom-color:var(--g1)}
+.tab-btn:hover{color:var(--g1)}
+.tab-body{display:none;padding-top:1.4rem}
+.tab-body.on{display:block}
+.ing-cloud{display:flex;flex-wrap:wrap;gap:.45rem}
+.ing-tag{background:var(--g5);color:var(--g1);border:1px solid var(--g4);
+  border-radius:50px;padding:.28rem .8rem;font-size:.76rem;font-weight:700}
+.hiw-list{display:flex;flex-direction:column;gap:.75rem}
+.hiw-item{display:flex;gap:.85rem;align-items:flex-start;padding:.9rem;
+  background:var(--cream2);border-radius:var(--r);border:1px solid var(--border)}
+.hiw-n{width:28px;height:28px;border-radius:50%;background:var(--gold);color:#fff;
+  font-weight:800;font-size:.78rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hiw-item h5{font-weight:800;font-size:.85rem;color:var(--brown);margin-bottom:.12rem}
+.hiw-item p{font-size:.78rem;color:var(--text2);line-height:1.58}
+.shelf-bar{background:var(--border);border-radius:50px;height:8px;overflow:hidden;margin:.5rem 0}
+.shelf-fill{height:100%;background:linear-gradient(90deg,var(--g1),var(--gold));border-radius:50px}
+.vol-tbl{width:100%;border-collapse:collapse;font-size:.82rem}
+.vol-tbl th{background:var(--g1);color:#fff;padding:.5rem .9rem;text-align:left;
+  font-size:.67rem;text-transform:uppercase;letter-spacing:.1em}
+.vol-tbl td{padding:.58rem .9rem;border-bottom:1px solid var(--border);color:var(--text2)}
+.vol-tbl tr:last-child td{border-bottom:none}
+.vol-tbl tr.best td{background:#fff8e1;font-weight:700;color:var(--brown)}
+.vol-tbl tr.best td:last-child::after{content:' 🔥'}
+.vol-tbl tbody tr{cursor:pointer;transition:.15s}
+.vol-tbl tbody tr:hover td{background:var(--g5)}
+.pay-opts{display:flex;flex-direction:column;gap:.5rem}
+.pay-opt{display:flex;align-items:center;gap:.9rem;padding:.85rem 1.1rem;
+  border:1.5px solid var(--border);border-radius:var(--r2);background:#fff;
+  font-size:.84rem;color:var(--text2)}
+.pay-opt span:first-child{font-size:1.35rem;flex-shrink:0}
+.del-list{display:flex;flex-direction:column;gap:.4rem}
+.del-row{display:flex;align-items:center;gap:.55rem;font-size:.82rem;color:var(--text2);
+  padding:.4rem 0;border-bottom:1px solid var(--border)}
+.del-row::before{content:'✓';color:var(--g1);font-weight:900;font-size:.9rem;flex-shrink:0}
+.info-box{padding:1rem;border-radius:var(--r);margin-top:1rem}
+.info-box.green{background:var(--g5);border:1px solid var(--g4);color:var(--g1)}
+.info-box.gold{background:var(--gold3);border:1px solid #f0d070;color:var(--brown2)}
+.info-box.cream{background:var(--cream2);border:1px solid var(--border);color:var(--text2)}
+
+/* RELATED */
+.related-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem}
+.rel-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--r2);
+  padding:1.1rem;text-align:center;cursor:pointer;transition:.22s}
+.rel-card:hover{box-shadow:var(--shadow2);transform:translateY(-3px);border-color:var(--g3)}
+.rel-em{font-size:2.5rem;margin-bottom:.4rem}
+.rel-name{font-family:'Playfair Display',serif;font-size:.82rem;font-weight:700;color:var(--brown);margin-bottom:.15rem}
+.rel-price{font-size:.74rem;color:var(--g2);font-weight:700}
+
+/* CART */
+.cart-page{padding:80px 4vw 4rem;max-width:1100px;margin:0 auto}
+.cart-layout{display:grid;grid-template-columns:1fr 360px;gap:2.5rem;align-items:start}
+.cart-items-list{display:flex;flex-direction:column;gap:1rem}
+.c-item{display:flex;gap:1.1rem;align-items:flex-start;background:#fff;
+  border:1.5px solid var(--border);border-radius:var(--r2);padding:1.1rem}
+.c-em{font-size:3.2rem;background:var(--g5);border-radius:var(--r);
+  padding:.45rem .7rem;flex-shrink:0;min-width:68px;text-align:center;line-height:1}
+.c-info{flex:1}
+.c-name{font-family:'Playfair Display',serif;font-weight:700;color:var(--brown);
+  font-size:1rem;margin-bottom:.18rem}
+.c-vol{font-size:.73rem;color:var(--text3);margin-bottom:.35rem}
+.c-price{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:900;color:var(--g1)}
+.c-row{display:flex;align-items:center;justify-content:space-between;margin-top:.55rem;gap:.5rem;flex-wrap:wrap}
+.c-remove{color:var(--red);font-size:.73rem;font-weight:700;cursor:pointer;
+  background:none;border:none;transition:.2s}
+.c-remove:hover{text-decoration:underline}
+.cart-sum{background:#fff;border:1.5px solid var(--border);border-radius:var(--r2);
+  padding:1.6rem;position:sticky;top:82px}
+.cart-sum h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--brown);
+  margin-bottom:1rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
+.sum-row{display:flex;justify-content:space-between;font-size:.85rem;color:var(--text2);margin-bottom:.5rem}
+.sum-total{font-weight:800;font-size:1rem;color:var(--brown);border-top:1px solid var(--border);
+  padding-top:.7rem;margin-top:.5rem}
+.sum-free{color:var(--g1);font-weight:800}
+.addr-sec{margin-top:1.4rem;padding-top:1.4rem;border-top:1px solid var(--border)}
+.addr-sec h4{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--brown);margin-bottom:.9rem}
+.form-row2{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.fg{margin-bottom:.65rem}
+.fl{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--text3);display:block;margin-bottom:.28rem}
+.fi,.fs,.fta{width:100%;padding:.58rem .8rem;border:1.5px solid var(--border);
+  border-radius:var(--r);font-size:.83rem;color:var(--text);background:#fff;
+  transition:.2s;font-family:'Nunito',sans-serif}
+.fi:focus,.fs:focus,.fta:focus{border-color:var(--g1);box-shadow:0 0 0 3px rgba(26,92,42,.1);outline:none}
+.fta{resize:vertical;min-height:65px}
+.fs{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23777' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .8rem center;padding-right:2rem}
+.map-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;
+  color:var(--g1);font-weight:700;cursor:pointer;margin-top:.25rem;transition:.2s}
+.map-link:hover{text-decoration:underline}
+.empty-state{text-align:center;padding:4rem 2rem}
+.es-em{font-size:4rem;margin-bottom:1rem}
+.es-em+h3{font-family:'Playfair Display',serif;color:var(--brown);margin-bottom:.5rem}
+.es-em+h3+p{font-size:.88rem;color:var(--text3)}
+
+/* PAYMENT */
+.pay-page{padding:80px 4vw 4rem;max-width:900px;margin:0 auto}
+.pay-layout{display:grid;grid-template-columns:1fr 300px;gap:2.2rem;align-items:start}
+.progress-bar{display:flex;align-items:center;gap:.5rem;margin-bottom:2rem;font-size:.75rem;font-weight:700}
+.pb-step{color:var(--text3)}
+.pb-step.done{color:var(--g1)}
+.pb-step.now{background:var(--g1);color:#fff;padding:.2rem .7rem;border-radius:50px}
+.pb-sep{color:var(--border)}
+.pm-list{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.5rem}
+.pm-opt{display:flex;align-items:center;gap:.85rem;padding:.85rem 1.1rem;
+  border:1.5px solid var(--border);border-radius:var(--r2);cursor:pointer;
+  transition:.2s;background:#fff}
+.pm-opt.on{border-color:var(--g1);background:var(--g5)}
+.pm-opt input[type=radio]{accent-color:var(--g1);width:15px;height:15px;flex-shrink:0}
+.pm-icon{font-size:1.4rem;flex-shrink:0}
+.pm-info h5{font-weight:800;font-size:.85rem;color:var(--brown)}
+.pm-info p{font-size:.7rem;color:var(--text3);margin-top:.08rem}
+.pay-sum{background:#fff;border:1.5px solid var(--border);border-radius:var(--r2);
+  padding:1.4rem;position:sticky;top:82px}
+.pay-item{display:flex;gap:.7rem;align-items:center;padding:.5rem 0;
+  border-bottom:1px solid var(--border);font-size:.82rem}
+.pay-item:last-of-type{border-bottom:none}
+.pay-em2{font-size:1.7rem;flex-shrink:0}
+
+/* CONFIRMATION */
+.conf-page{padding:90px 4vw 4rem;max-width:640px;margin:0 auto;text-align:center}
+.conf-icon{font-size:5rem;animation:pop .5s ease-out;margin-bottom:1.2rem;display:block}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.2)}100%{transform:scale(1)}}
+.conf-id{background:var(--g5);border:1.5px solid var(--g3);border-radius:var(--r);
+  padding:.7rem 1.5rem;font-family:'Playfair Display',serif;font-size:1.1rem;
+  font-weight:700;color:var(--g1);display:inline-block;margin:.8rem 0;letter-spacing:.05em}
+.conf-details{background:#fff;border:1.5px solid var(--border);border-radius:var(--r2);
+  padding:1.4rem;margin-top:1.4rem;text-align:left}
+.conf-row{display:flex;justify-content:space-between;align-items:flex-start;
+  font-size:.83rem;color:var(--text2);padding:.45rem 0;border-bottom:1px solid var(--border)}
+.conf-row:last-child{border-bottom:none}
+.conf-row strong{color:var(--brown);text-align:right;max-width:60%}
+
+/* FOOTER */
+.footer{background:var(--brown);color:rgba(255,255,255,.58);padding:3.5rem 4vw 1.8rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;
+  padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-brand p{font-size:.8rem;line-height:1.8;margin-top:.55rem;max-width:260px}
+.footer-col h5{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.16em;
+  color:var(--gold2);margin-bottom:.9rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.45rem}
+.footer-col li{font-size:.78rem;cursor:pointer;transition:.2s}
+.footer-col li:hover{color:#fff}
+.footer-bot{display:flex;justify-content:space-between;align-items:center;
+  padding-top:1.4rem;font-size:.73rem;flex-wrap:wrap;gap:.5rem}
+.footer-nav{display:flex;gap:1.1rem}
+.footer-nav span{cursor:pointer;transition:.2s}
+.footer-nav span:hover{color:#fff}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .hero,.enzyme-grid,.pd-hero,.cart-layout,.pay-layout,.footer-grid{grid-template-columns:1fr}
+  .hero{padding-bottom:3rem}
+  .hero-visual,.pd-visual{position:static}
+  .testi-grid{grid-template-columns:1fr}
+  .eco-row{grid-template-columns:1fr 1fr}
+  .process{grid-template-columns:1fr 1fr}
+  .process::before{display:none}
+  .e-cards{grid-template-columns:1fr}
+  .cta-band{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+@media(max-width:600px){
+  .prod-grid{grid-template-columns:1fr 1fr}
+  .eco-row{grid-template-columns:1fr}
+  .form-row2{grid-template-columns:1fr}
+  .hero-prod-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div id="toast"></div>
+<div id="app"></div>
+<script>
+/* ═══════════════════════════
+   PRODUCT DATA
+═══════════════════════════ */
+const PRODUCTS=[
+{id:'dish-wash',name:'Dish Wash Gel',emoji:'🍽️',cat:'Kitchen',price:299,mrp:399,off:'25% OFF',defVol:'500ml',
+ tag:'Citrus bio enzyme degreaser — sparkling dishes, zero dry hands',
+ made:'Rescued lemon & orange peels fermented 90 days with jaggery + water, blended with Coco-Glucoside (coconut surfactant) and Almond Gum (botanical thickener).',
+ valid:'12 months unopened · 6 months after first use',days:365,
+ ings:['Citric Bio Enzyme','Coco-Glucoside','Almond Gum','Lemon Essential Oil','Distilled Water','Rosemary Extract'],
+ hiw:[['Enzyme Grease Break','Citric enzymes sever molecular bonds between grease and dish surfaces on contact — no scrubbing.'],
+      ['Surfactant Lift','Coco-glucoside lather suspends loosened grease for easy rinsing with minimal water.'],
+      ['Skin Shield','Almond gum forms a protective film on hands preventing dryness during long washing sessions.'],
+      ['Residue-Free Rinse','All ingredients are fully water-soluble — no chemical residue left on dishes or hands.']],
+ vols:[['250ml',179,false],['500ml',299,true],['1L',529,false],['2L',999,false],['5L',2299,false]],
+ del:'1–3 business days pan-India. Free delivery above ₹499. Same-day dispatch before 2 PM.'},
+
+{id:'hand-wash',name:'Hand Wash',emoji:'🖐️',cat:'Personal Care',price:189,mrp:225,off:'16% OFF',defVol:'400ml',
+ tag:'Papaya enzyme foam that cleanses, moisturises and protects hands naturally',
+ made:'Fermented papaya enzyme + Decyl Glucoside (corn-coconut cleanser) + Organic Aloe Vera Juice + Coconut Oil + Lemongrass essential oil.',
+ valid:'18 months unopened · 6 months after opening',days:540,
+ ings:['Fermented Papaya Enzyme','Decyl Glucoside','Aloe Vera Juice','Coconut Oil','Lemongrass Essential Oil','Xanthan Gum','Distilled Water'],
+ hiw:[['Enzyme Cleansing','Papaya proteases dissolve protein-based contaminants — bacteria, sweat proteins, food residue.'],
+      ['Sugar Foam','Decyl glucoside from corn and coconut creates rich lather without stripping skin oils.'],
+      ['Aloe Healing','Aloe vera soothes and hydrates, keeping hands soft and moisturised post-wash.'],
+      ['Natural Antibacterial','Lemongrass oil provides broad-spectrum antimicrobial action without triclosan.']],
+ vols:[['200ml',149,false],['400ml',189,true],['800ml',349,false],['1L Refill',419,false]],
+ del:'1–3 days pan-India. Refill packs available. Free above ₹499.'},
+
+{id:'bathing-soap',name:'Bathing Soap Bar',emoji:'🧼',cat:'Personal Care',price:99,mrp:149,off:'34% OFF',defVol:'100g',
+ tag:'Cold-process enzyme soap with live citrus cultures and kaolin clay',
+ made:'Cold-process Coconut Oil + Shea Butter + Castor Oil saponified with lye, enriched with fermented lemon enzyme, Aloe Vera powder, and Kaolin Clay.',
+ valid:'24 months from manufacture · Cured 4 weeks before packaging',days:730,
+ ings:['Coconut Oil','Shea Butter','Castor Oil','Fermented Lemon Enzyme','Kaolin Clay','Aloe Vera Powder','Lemon Essential Oil','Sodium Hydroxide (fully reacted)'],
+ hiw:[['Natural Glycerin','Cold-process retains glycerin — a humectant drawing moisture to skin throughout the day.'],
+      ['Enzyme Exfoliation','Citrus enzymes gently dissolve dead skin cells for radiant, smooth skin without scrubbing.'],
+      ['Clay Detox','Kaolin clay draws impurities, excess sebum, and environmental pollutants from pores gently.'],
+      ['Oil Nourishment','Shea butter and castor oil provide lasting post-wash softness and skin protection.']],
+ vols:[['75g bar',79,false],['100g bar',99,true],['3×100g pack',279,false],['6×100g pack',529,false]],
+ del:'Wrapped in kraft paper, boxed securely. 1–3 days delivery. Free above ₹499.'},
+
+{id:'floor-cleaner',name:'Floor Cleaner',emoji:'🧹',cat:'Home Cleaning',price:429,mrp:549,off:'22% OFF',defVol:'1L',
+ tag:'Pine enzyme deep-clean for tiles, marble and stone — no chlorine, no phenyl',
+ made:'Pine needle fermented enzyme + Sodium Bicarbonate + Food-grade Citric Acid + Pine Essential Oil. Zero chlorine, zero phenyl.',
+ valid:'12 months unopened · Diluted solution use within 24h',days:365,
+ ings:['Pine Fermented Enzyme','Sodium Bicarbonate','Citric Acid (Food Grade)','Pine Essential Oil','Natural Preservative','Distilled Water'],
+ hiw:[['Deep Penetration','Pine enzymes enter porous grout and tile, breaking down organic dirt at the molecular level.'],
+      ['Bicarbonate Deodorise','Sodium bicarbonate neutralises acidic cooking and bathroom odours completely.'],
+      ['Streak-Free Rinse','Self-rinsing formula — no sticky residue or chemical film after mopping. Floors shine.'],
+      ['Ongoing Action','Active enzyme cultures reduce bacterial load on floors for hours post-mopping.']],
+ vols:[['500ml',249,false],['1L',429,true],['2L',799,false],['5L',1799,false]],
+ del:'Heavy 5L orders packed in double-wall cartons. 1–3 days. Free above ₹499.'},
+
+{id:'toilet-cleaner',name:'Toilet Cleaner',emoji:'🚽',cat:'Bathroom',price:229,mrp:299,off:'23% OFF',defVol:'1L',
+ tag:'Thick citric gel eliminates stains, limescale and bacteria — naturally',
+ made:'Citric Acid 30% (food-grade) + Fermented Orange Peel Enzyme + Xanthan Gum + Tea Tree + Eucalyptus Essential Oils.',
+ valid:'18 months unopened · 9 months after opening',days:540,
+ ings:['Citric Acid 30%','Fermented Orange Peel Enzyme','Xanthan Gum','Tea Tree Essential Oil','Eucalyptus Essential Oil','Natural Blue Dye (Food Grade)','Distilled Water'],
+ hiw:[['Acid Descaling','30% citric acid dissolves limescale, rust stains, and mineral deposits instantly.'],
+      ['Enzyme Sanitation','Bio enzymes target uric acid deposits, bacteria biofilm, and organic bowl staining.'],
+      ['Tea Tree Kill','Broad-spectrum natural antimicrobial action against E.coli, Staphylococcus and common pathogens.'],
+      ['Gel Cling','Xanthan gum keeps formula clinging to bowl walls for 15-min maximum contact.']],
+ vols:[['500ml',179,false],['1L',229,true],['2L',429,false]],
+ del:'Leak-proof sealed packaging. 1–3 days pan-India. Free above ₹499.'},
+
+{id:'laundry-liquid',name:'Laundry Liquid',emoji:'👕',cat:'Laundry',price:529,mrp:649,off:'18% OFF',defVol:'1L',
+ tag:'Multi-enzyme complex lifts protein, starch & oil stains — all fabric types',
+ made:'Protease (pineapple) + Amylase (papaya) + Lipase enzymes + SLSA (sugar-derived surfactant) + Sodium Citrate + Lavender oil.',
+ valid:'15 months unopened · 6 months after opening',days:450,
+ ings:['Protease Enzyme (Pineapple)','Amylase Enzyme (Papaya)','Lipase Enzyme (Natural)','Sodium Lauryl Sulfoacetate','Sodium Citrate','Lavender Essential Oil','Glycerin','Distilled Water'],
+ hiw:[['Multi-Enzyme Attack','Protease (protein), Amylase (starch/mud), Lipase (oil/grease) work simultaneously on stains.'],
+      ['Water Softening','Sodium citrate chelates hard water minerals for equal effectiveness everywhere in India.'],
+      ['Low-Foam Formula','Sugar-derived SLSA works in both hand-wash and all machine-wash types.'],
+      ['Fibre-Safe Rinse','Fully rinses from fabric — no enzyme residue that could irritate sensitive skin.']],
+ vols:[['500ml',299,false],['1L',529,true],['2L',999,false],['5L',2299,false]],
+ del:'1–3 days. 5L bulk in cartons. Free above ₹499. Works with front-load, top-load, hand-wash.'},
+
+{id:'glass-cleaner',name:'Glass Cleaner',emoji:'🪟',cat:'Home Cleaning',price:299,mrp:379,off:'21% OFF',defVol:'500ml',
+ tag:'Streak-free shine on windows & mirrors — no ammonia, no streaks guaranteed',
+ made:'Citric Acid 5% + Fermented Lemon Enzyme + Food-Grade Ethanol 10% + Glycerin + Lemon Essential Oil. Zero ammonia.',
+ valid:'24 months unopened · 12 months after opening',days:730,
+ ings:['Citric Acid 5%','Fermented Lemon Enzyme','Food-Grade Ethanol 10%','Glycerin (Plant-Derived)','Lemon Essential Oil','Purified Water'],
+ hiw:[['Enzyme Dissolve','Lemon enzymes break down fingerprints and organic films on glass without smearing.'],
+      ['Acid Polish','Citric acid dissolves mineral water spots and calcium deposits on glass surfaces.'],
+      ['Fast Evaporation','Ethanol evaporates rapidly pulling dissolved dirt, leaving perfectly clear surfaces.'],
+      ['Anti-Static','Trace glycerin provides micro anti-static layer repelling future dust settlement.']],
+ vols:[['250ml Spray',149,false],['500ml',299,true],['1L Refill',519,false]],
+ del:'Spray nozzle included with 250ml & 500ml. 1–3 days. Free above ₹499.'},
+
+{id:'bathroom-cleaner',name:'Bathroom Cleaner',emoji:'🛁',cat:'Bathroom',price:379,mrp:479,off:'21% OFF',defVol:'1L',
+ tag:'Removes soap scum, hard water & mildew naturally — zero bleach',
+ made:'Citric Acid 15% + Fermented Grapefruit Enzyme + Sodium Percarbonate (natural mineral) + Tea Tree + Peppermint oils.',
+ valid:'15 months unopened · 6 months after opening',days:450,
+ ings:['Citric Acid 15%','Fermented Grapefruit Enzyme','Sodium Percarbonate (Natural)','Tea Tree Essential Oil','Peppermint Essential Oil','Xanthan Gum','Distilled Water'],
+ hiw:[['Citric Descaling','15% citric acid dissolves calcium carbonate, soap scum, and hard water stains on tiles.'],
+      ['Enzyme Mould Action','Grapefruit enzymes break down mould and mildew cell walls — without bleach.'],
+      ['Oxygen Whitening','Natural percarbonate releases oxygen, lifting stains and brightening grout lines.'],
+      ['Aromatic Protect','Tea tree + peppermint provide lasting antimicrobial protection and clean scent.']],
+ vols:[['500ml',219,false],['1L',379,true],['2L',699,false]],
+ del:'Sealed packaging. 1–3 days. Free above ₹499. Avoid on marble and natural stone.'},
+
+{id:'kitchen-spray',name:'Kitchen Spray',emoji:'🍳',cat:'Kitchen',price:279,mrp:349,off:'20% OFF',defVol:'500ml',
+ tag:'Food-safe enzyme spray cuts oil, grease and food spills instantly',
+ made:'Fermented Lemon Enzyme + Coco-Glucoside 2% + Sodium Bicarbonate + Oregano Essential Oil + White Vinegar 2%. All food-grade.',
+ valid:'12 months unopened · Ready-to-use, no dilution',days:365,
+ ings:['Fermented Lemon Enzyme','Coco-Glucoside 2%','Sodium Bicarbonate','Oregano Essential Oil','White Vinegar (Acetic Acid 2%)','Distilled Water'],
+ hiw:[['Enzyme Degrease','Lemon enzymes break grease-surface molecular bonds instantly on counters and stovetops.'],
+      ['Bicarbonate Lift','Mild alkaline baking soda loosens baked-on food and neutralises cooking odours.'],
+      ['Food-Safe Formula','Every ingredient is food-grade — safe on all food-contact surfaces, no toxic risk.'],
+      ['Oregano Sterilise','Oregano carvacrol content provides proven broad-spectrum antibacterial action.']],
+ vols:[['250ml Spray',149,false],['500ml Spray',279,true],['1L Refill',479,false]],
+ del:'Trigger sprayer included. 1–3 days. Free above ₹499. Ready to use right away.'},
+
+{id:'fabric-softener',name:'Fabric Softener',emoji:'🌸',cat:'Laundry',price:449,mrp:549,off:'18% OFF',defVol:'1L',
+ tag:'Cellulase enzymes soften, de-pill and restore colour to fabrics naturally',
+ made:'Cellulase Enzyme (plant-derived) + Behentrimonium Methosulfate (coconut conditioner) + Jasmine + Rose Geranium oils + Glycerin.',
+ valid:'18 months unopened · 8 months after opening',days:540,
+ ings:['Cellulase Enzyme (Plant-Derived)','Behentrimonium Methosulfate (Coconut)','Jasmine Essential Oil','Rose Geranium Essential Oil','Glycerin','Citric Acid (pH balance)','Distilled Water'],
+ hiw:[['Cellulase Smoothing','Trims micro-fibrils on fabric surface that cause roughness — restores natural softness.'],
+      ['Natural Conditioning','Plant cationic agent coats fibres reducing static, tangling, and wrinkles.'],
+      ['Colour Restore','Micro-fibril removal restores colour vibrancy on worn and faded fabrics.'],
+      ['Scent Release','Essential oil micro-droplets release gentle natural floral fragrance when worn or ironed.']],
+ vols:[['500ml',249,false],['1L',449,true],['2L',849,false]],
+ del:'1–3 days. All fabric types. Free above ₹499. Use 20–30ml per rinse cycle.'},
+];
+
+const STATES=['Andhra Pradesh','Arunachal Pradesh','Assam','Bihar','Chhattisgarh','Goa','Gujarat','Haryana','Himachal Pradesh','Jharkhand','Karnataka','Kerala','Madhya Pradesh','Maharashtra','Manipur','Meghalaya','Mizoram','Nagaland','Odisha','Punjab','Rajasthan','Sikkim','Tamil Nadu','Telangana','Tripura','Uttar Pradesh','Uttarakhand','West Bengal'];
+
+/* ═══════════════════════════
+   APP STATE
+═══════════════════════════ */
+let S={
+  page:'home', pid:null, tab:'ing',
+  cat:'All', payM:'upi',
+  cart:JSON.parse(localStorage.getItem('vc')||'[]'),
+  orders:JSON.parse(localStorage.getItem('vo')||'[]'),
+  addr:JSON.parse(localStorage.getItem('va')||'null'),
+  selVol:{}, selQty:{},
+  confId:null, scrolled:false
+};
+
+/* ═══════════════════════════
+   CART
+═══════════════════════════ */
+const cartCount=()=>S.cart.reduce((a,i)=>a+i.qty,0);
+const cartSub=()=>S.cart.reduce((a,i)=>a+i.price*i.qty,0);
+function saveCart(){localStorage.setItem('vc',JSON.stringify(S.cart))}
+function saveOrders(){localStorage.setItem('vo',JSON.stringify(S.orders))}
+function saveAddr(a){localStorage.setItem('va',JSON.stringify(a));S.addr=a}
+
+function addCart(p,vol,price,qty=1){
+  const ex=S.cart.find(i=>i.id===p.id&&i.vol===vol);
+  if(ex)ex.qty+=qty;
+  else S.cart.push({id:p.id,name:p.name,emoji:p.emoji,vol,price,qty});
+  saveCart();toast(`🛒 ${p.name} added to cart!`);render()
+}
+function remCart(id,vol){S.cart=S.cart.filter(i=>!(i.id===id&&i.vol===vol));saveCart();render()}
+function updQty(id,vol,q){const i=S.cart.find(x=>x.id===id&&x.vol===vol);if(i){i.qty=Math.max(1,q);saveCart();render()}}
+
+function getPrice(p){
+  const sv=S.selVol[p.id]||p.defVol;
+  const vr=p.vols.find(v=>v[0]===sv);
+  return vr?vr[1]:p.price;
+}
+
+/* ═══════════════════════════
+   TOAST
+═══════════════════════════ */
+let _tt;
+function toast(msg){
+  const el=document.getElementById('toast');
+  el.textContent=msg;el.classList.add('show');
+  clearTimeout(_tt);_tt=setTimeout(()=>el.classList.remove('show'),3000)
+}
+
+/* ═══════════════════════════
+   ROUTER
+═══════════════════════════ */
+function go(page,pid=null){
+  S.page=page;S.pid=pid;S.tab='ing';
+  window.scrollTo({top:0,behavior:'instant'});render()
+}
+
+/* ═══════════════════════════
+   NAV
+═══════════════════════════ */
+function navHTML(){
+  const cnt=cartCount();
+  const cats=['All','Kitchen','Personal Care','Home Cleaning','Bathroom','Laundry'];
+  return`<div class="topbar">🌿 Free shipping on orders above ₹499 &nbsp;|&nbsp; Bio Enzyme Certified &nbsp;<a onclick="go('home')">Shop Now</a></div>
+<nav class="nav${S.scrolled?' scrolled':''}">
+<div class="nav-inner">
+  <div class="logo" onclick="go('home')">
+    <div class="logo-leaf">🍋</div>
+    <div><span class="logo-name">Vidhatri</span><span class="logo-sub">Bio Enzyme Products</span></div>
+  </div>
+  <div class="nav-links">
+    ${cats.map(c=>`<span class="nav-link${S.cat===c&&S.page==='home'?' on':''}" onclick="filterCat('${c}')">${c}</span>`).join('')}
+  </div>
+  <div class="nav-right">
+    <button class="nav-icon" onclick="go('home')" title="Home">🏠</button>
+    <button class="nav-icon" onclick="go('cart')" title="Cart" style="position:relative">
+      🛒${cnt>0?`<span class="cart-badge">${cnt}</span>`:''}
+    </button>
+  </div>
+</div>
+</nav>`
+}
+
+/* ═══════════════════════════
+   FOOTER
+═══════════════════════════ */
+function footerHTML(){
+  return`<footer class="footer">
+<div class="footer-grid">
+  <div class="footer-brand">
+    <div class="logo" onclick="go('home')" style="cursor:pointer">
+      <div class="logo-leaf">🍋</div>
+      <div><span class="logo-name" style="color:#fff">Vidhatri</span><span class="logo-sub">Bio Enzyme Products</span></div>
+    </div>
+    <p>We rescue lemon peels and ferment them into powerful bio enzyme household cleaners — zero chemicals, maximum care for your family and planet.</p>
+  </div>
+  <div class="footer-col"><h5>Products</h5><ul>${PRODUCTS.slice(0,5).map(p=>`<li onclick="go('product','${p.id}')">${p.name}</li>`).join('')}</ul></div>
+  <div class="footer-col"><h5>More Products</h5><ul>${PRODUCTS.slice(5).map(p=>`<li onclick="go('product','${p.id}')">${p.name}</li>`).join('')}</ul></div>
+  <div class="footer-col"><h5>Contact Us</h5><ul>
+    <li>📱 +91 83670 66110</li>
+    <li>💬 WhatsApp Order</li>
+    <li onclick="go('cart')">🛒 View Cart</li>
+    <li onclick="go('home')">🏠 Home</li>
+  </ul></div>
+</div>
+<div class="footer-bot">
+  <span>© 2026 Vidhatri Bio Enzyme Products · Made with 💛 in India</span>
+  <div class="footer-nav"><span>Privacy Policy</span><span>Terms</span><span>Refund Policy</span><span>Shipping Policy</span></div>
+</div>
+</footer>`
+}
+
+/* ═══════════════════════════
+   HOME PAGE
+═══════════════════════════ */
+function filterCat(c){S.cat=c;if(S.page!=='home')go('home');else render()}
+
+function homeHTML(){
+  const cats=['All','Kitchen','Personal Care','Home Cleaning','Bathroom','Laundry'];
+  const prods=S.cat==='All'?PRODUCTS:PRODUCTS.filter(p=>p.cat===S.cat);
+  const heroProds=PRODUCTS.slice(0,6);
+  return`${navHTML()}
+<section class="hero">
+  <div>
+    <div class="hero-pill">🧬 Powered by Nature's Bio Enzymes</div>
+    <div class="hero-script">From rescued lemon peels to your home</div>
+    <h1 class="hero-h1">Clean Your World<br>with <em>Bio Enzyme</em><br>Not Chemicals</h1>
+    <p class="hero-p">Vidhatri harnesses the power of natural bio enzymes — fermented from rescued citrus peels over 90 days — to create 10 household cleaners as powerful as chemical products, yet completely safe for your family, skin, and planet.</p>
+    <div class="hero-btns">
+      <button class="btn btn-green btn-lg" onclick="document.getElementById('prods').scrollIntoView({behavior:'smooth'})">🌿 Shop All Products</button>
+      <button class="btn btn-outline btn-lg" onclick="document.getElementById('enzyme').scrollIntoView({behavior:'smooth'})">What is Bio Enzyme?</button>
+    </div>
+    <div class="hero-chips">
+      <span class="chip">🔬 Zero Chemicals</span>
+      <span class="chip">♻️ 100% Biodegradable</span>
+      <span class="chip">🫙 Handcrafted Batches</span>
+      <span class="chip">🚚 Pan-India Delivery</span>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-prod-grid">
+      ${heroProds.map(p=>`<div class="h-card" onclick="go('product','${p.id}')">
+        <span class="h-card-badge">${p.off}</span>
+        <span class="h-card-em">${p.emoji}</span>
+        <div class="h-card-name">${p.name}</div>
+        <div class="h-card-price">From ₹${p.price}</div>
+      </div>`).join('')}
+    </div>
+  </div>
+</section>
+
+<!-- BIO ENZYME INTRO -->
+<section class="sec sec-green" id="enzyme">
+  <div class="enzyme-grid">
+    <div>
+      <span class="lbl">What is Bio Enzyme?</span>
+      <h2 class="sh2">Nature's Most <em>Powerful</em> Cleaner</h2>
+      <div class="sdiv"></div>
+      <p class="sdesc">A <strong>bio enzyme</strong> is a natural protein catalyst produced by living organisms through fermentation. At Vidhatri, we ferment rescued citrus peels with jaggery + water over 90 days to produce enzyme-rich liquid that replaces every toxic chemical cleaner in your home.</p>
+      <p class="sdesc" style="margin-top:.9rem">Unlike synthetic cleaners that attack surfaces with corrosive alkalis and acids, bio enzymes work with molecular precision — targeting only specific organic matter (grease, protein, starch) while leaving no toxic residue. They fully biodegrade in natural waterways within 3–7 days.</p>
+      <div class="enzyme-facts">
+        <div class="e-fact"><div class="num">90+</div><div class="lab">Days Fermented</div></div>
+        <div class="e-fact"><div class="num">10</div><div class="lab">Products</div></div>
+        <div class="e-fact"><div class="num">0</div><div class="lab">Chemicals Used</div></div>
+        <div class="e-fact"><div class="num">7</div><div class="lab">Days to Biodegrade</div></div>
+      </div>
+    </div>
+    <div class="e-cards">
+      <div class="e-card full"><span class="e-ico">🧬</span><h4>Molecular Precision Cleaning</h4><p>Traditional cleaners kill everything indiscriminately. Bio enzymes target only specific organic matter — lipase for fats, protease for proteins, amylase for starches. Smart, precise, safe.</p></div>
+      <div class="e-card"><span class="e-ico">⚗️</span><h4>90-Day Fermentation</h4><p>Citrus peels + jaggery + water in 1:3:10 ratios, fermented airtight for 90+ days to produce enzyme-rich liquid.</p></div>
+      <div class="e-card"><span class="e-ico">💧</span><h4>Aquatic Safe</h4><p>Fully biodegrades within 3–7 days in waterways. Zero aquatic toxicity. Zero microplastics.</p></div>
+      <div class="e-card"><span class="e-ico">🌱</span><h4>Living Chemistry</h4><p>Active bio cultures continue working after application, breaking down residue and bacteria over time.</p></div>
+      <div class="e-card"><span class="e-ico">🔬</span><h4>Zero Synthetics</h4><p>No parabens, sulfates, phosphates, chlorine, or artificial fragrances in any product. Ever.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="sec sec-white">
+  <div class="tc">
+    <span class="lbl">The Science</span>
+    <h2 class="sh2">How <em>Bio Enzyme</em> Works — 5 Steps</h2>
+    <div class="sdiv"></div>
+    <p class="sdesc">From rescued citrus peels to your clean home — a journey of natural fermentation science.</p>
+  </div>
+  <div class="process">
+    <div class="p-step"><div class="p-circle">🍋</div><h5>Rescue Peels</h5><p>Lemon, orange & lime peels collected before landfill</p></div>
+    <div class="p-step"><div class="p-circle">🍯</div><h5>Fermentation Mix</h5><p>Combined with jaggery + water in 1:3:10 ratio, sealed airtight</p></div>
+    <div class="p-step"><div class="p-circle">🧫</div><h5>90-Day Culture</h5><p>Beneficial bacteria produce enzyme-rich liquid</p></div>
+    <div class="p-step"><div class="p-circle">🫧</div><h5>Product Crafting</h5><p>Enzyme liquid blended with plant-based co-ingredients</p></div>
+    <div class="p-step"><div class="p-circle">✨</div><h5>Clean & Safe</h5><p>Applied to surfaces — breaks dirt, leaves zero residue</p></div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="sec sec-cream" id="prods">
+  <div class="tc">
+    <span class="lbl">Our Range</span>
+    <h2 class="sh2">10 Products. One <em>Pure</em> Philosophy.</h2>
+    <div class="sdiv"></div>
+    <p class="sdesc">Every product replaces a chemical-laden household staple with a bio enzyme alternative that's equally powerful — infinitely kinder.</p>
+  </div>
+  <div class="cat-pills">
+    ${cats.map(c=>`<span class="cat-pill${S.cat===c?' on':''}" onclick="filterCat('${c}')">${c}</span>`).join('')}
+  </div>
+  <div class="prod-grid">
+    ${prods.map(p=>`<div class="prod-card" onclick="go('product','${p.id}')">
+      <div class="prod-img">
+        <span class="prod-off">${p.off}</span>
+        ${p.emoji}
+      </div>
+      <div class="prod-body">
+        <p class="prod-cat">${p.cat}</p>
+        <h3 class="prod-name">${p.name}</h3>
+        <p class="prod-tag">${p.tag}</p>
+        <div class="prod-foot">
+          <div><span class="prod-price">₹${p.price}</span><span class="prod-mrp">₹${p.mrp}</span></div>
+          <button class="add-btn" onclick="event.stopPropagation();addCart({id:'${p.id}',name:'${p.name}',emoji:'${p.emoji}'},'${p.defVol}',${p.price})">+ Add</button>
+        </div>
+      </div>
+    </div>`).join('')}
+  </div>
+</section>
+
+<!-- ECO -->
+<section class="sec sec-green">
+  <div class="tc">
+    <span class="lbl">Our Promise</span>
+    <h2 class="sh2">Biodegradable, <em>Earth-Safe</em> & Honest</h2>
+    <div class="sdiv"></div>
+    <p class="sdesc">Every claim is backed by bio enzyme science. Nothing hidden, nothing synthetic.</p>
+  </div>
+  <div class="eco-row">
+    <div class="eco-card"><span class="eco-icon">🌿</span><h4>100% Plant-Derived</h4><p>Every active ingredient originates from a plant, fruit, or beneficial microorganism.</p></div>
+    <div class="eco-card"><span class="eco-icon">🧪</span><h4>No Synthetic Chemicals</h4><p>Zero parabens, sulfates, phosphates, chlorine bleach, or artificial fragrances in any product.</p></div>
+    <div class="eco-card"><span class="eco-icon">♻️</span><h4>Fully Biodegradable</h4><p>All formulas degrade completely within 7 days in natural waterways. Zero aquatic toxicity.</p></div>
+    <div class="eco-card"><span class="eco-icon">🫙</span><h4>Small Batch Handcrafted</h4><p>Made in limited batches for freshness, quality control, and minimal production waste.</p></div>
+    <div class="eco-card"><span class="eco-icon">🐰</span><h4>Cruelty-Free & Vegan</h4><p>No animal derivatives. No animal testing. Safe for all skin types including babies.</p></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sec">
+  <div class="tc">
+    <span class="lbl">Real Reviews</span>
+    <h2 class="sh2">Trusted by <em>Families</em> Across India</h2>
+    <div class="sdiv"></div>
+  </div>
+  <div class="testi-grid">
+    <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-q">"Switched all 7 cleaning products to Vidhatri. My kids' eczema improved noticeably and the house smells naturally fresh. Cannot go back to chemical cleaners."</p><div class="t-user"><div class="t-av">👩</div><div><div class="t-name">Sujatha Rao</div><div class="t-loc">Hyderabad, Telangana</div></div></div></div>
+    <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-q">"The floor cleaner works better than Lizol on my mosaic tiles. And knowing there's no chlorine going down my drain gives such peace of mind. Ordered 5L this time!"</p><div class="t-user"><div class="t-av">👨</div><div><div class="t-name">Karthik Menon</div><div class="t-loc">Bengaluru, Karnataka</div></div></div></div>
+    <div class="t-card"><div class="t-stars">★★★★★</div><p class="t-q">"As a nature educator I struggled to find truly natural products. Vidhatri is the real deal — bio enzyme science done right, packaged beautifully, delivered fresh in 2 days."</p><div class="t-user"><div class="t-av">👩</div><div><div class="t-name">Deepa Krishnan</div><div class="t-loc">Chennai, Tamil Nadu</div></div></div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="sec-sm" style="padding:2rem 4vw 3rem">
+  <div class="cta-band">
+    <div><h2 class="sh2">Delivered Fresh to Your <em>Door</em></h2><p class="sdesc">Pan-India delivery · Free above ₹499 · Same-day dispatch before 2 PM</p></div>
+    <div class="cta-btns">
+      <button class="btn btn-white" onclick="document.getElementById('prods').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+      <button class="btn btn-gold" onclick="go('cart')">🛒 View Cart</button>
+    </div>
+  </div>
+</div>
+
+${footerHTML()}`
+}
+
+/* ═══════════════════════════
+   PRODUCT DETAIL
+═══════════════════════════ */
+function productHTML(){
+  const p=PRODUCTS.find(x=>x.id===S.pid);
+  if(!p)return homeHTML();
+  const sv=S.selVol[p.id]||p.defVol;
+  const vr=p.vols.find(v=>v[0]===sv)||p.vols[0];
+  const price=vr[1];
+  const qty=S.selQty[p.id]||1;
+  const save=Math.round((1-price/p.mrp)*100);
+  const tabs=[['ing','Ingredients'],['hiw','How It Works'],['valid','Validity & Storage'],['del','Delivery'],['pay','Payment'],['vol','Volume Pricing']];
+
+  return`${navHTML()}
+<div class="pd-page">
+<div class="pd-hero">
+  <!-- VISUAL -->
+  <div class="pd-visual">
+    <div class="pd-emoji">${p.emoji}</div>
+    <div class="pd-vis-name">${p.name}</div>
+    <div class="pd-vis-cat">${p.cat} · Bio Enzyme</div>
+    <div class="pd-vis-chips">
+      <span class="vis-chip">🌿 Natural</span>
+      <span class="vis-chip">♻️ Eco-Safe</span>
+      <span class="vis-chip">🫙 Handcrafted</span>
+    </div>
+  </div>
+
+  <!-- INFO -->
+  <div>
+    <div class="pd-bc"><span onclick="go('home')">Home</span> › <span onclick="go('home')">Products</span> › ${p.name}</div>
+    <div class="pd-badges">
+      <span class="pd-badge">🌿 Bio Enzyme</span>
+      <span class="pd-badge">${p.cat}</span>
+      <span class="pd-badge">${p.off}</span>
+    </div>
+    <h1 class="pd-h1">${p.name}</h1>
+    <p class="pd-tag">${p.tag}. Handcrafted with live bio enzymes — zero synthetic chemicals.</p>
+
+    <div class="price-box">
+      <div class="price-row">
+        <span class="price-now">₹${price}</span>
+        <span class="price-mrp">₹${p.mrp}</span>
+        <span class="price-save">${save}% OFF</span>
+      </div>
+      <div style="font-size:.72rem;color:var(--text3);margin-bottom:1rem">incl. all taxes · <strong style="color:var(--g1)">Free delivery above ₹499</strong></div>
+
+      <div class="vol-lbl">Choose Volume</div>
+      <div class="vol-pills">
+        ${p.vols.map(([v,vp,best])=>`<span class="v-pill${sv===v?' on':''}" onclick="selVol('${p.id}','${v}',${vp})">${v}${best?' 🔥':''}</span>`).join('')}
+      </div>
+
+      <div class="qty-row">
+        <span class="qty-lbl">Qty</span>
+        <div class="qty-wrap">
+          <button class="q-btn" onclick="chgQty('${p.id}',-1)">−</button>
+          <span class="q-val" id="qv">${qty}</span>
+          <button class="q-btn" onclick="chgQty('${p.id}',1)">+</button>
+        </div>
+      </div>
+
+      <div class="pd-actions">
+        <button class="btn btn-outline" onclick="addCart({id:'${p.id}',name:'${p.name}',emoji:'${p.emoji}'},'${sv}',${price},${qty})">🛒 Add to Cart</button>
+        <button class="btn btn-green" onclick="addCart({id:'${p.id}',name:'${p.name}',emoji:'${p.emoji}'},'${sv}',${price},${qty});go('cart')">⚡ Buy Now</button>
+      </div>
+      <div class="pd-meta">
+        <span>📅 Shelf life: <strong>${p.valid.split('·')[0].trim()}</strong></span>
+        <span>🚚 Delivery: <strong style="color:var(--g1)">1–3 Days</strong></span>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+      <div class="tab-nav">
+        ${tabs.map(([id,lbl])=>`<button class="tab-btn${S.tab===id?' on':''}" onclick="setTab('${id}')">${lbl}</button>`).join('')}
+      </div>
+
+      <!-- INGREDIENTS -->
+      <div class="tab-body${S.tab==='ing'?' on':''}">
+        <p style="font-size:.85rem;color:var(--text2);line-height:1.8;margin-bottom:1.1rem"><strong>Made from:</strong> ${p.made}</p>
+        <div class="ing-cloud">${p.ings.map(i=>`<span class="ing-tag">${i}</span>`).join('')}</div>
+        <div class="info-box green" style="margin-top:1.2rem">
+          <strong>🌿 No Hidden Chemicals</strong><br>
+          <span style="font-size:.78rem">Zero synthetic fragrances, parabens, SLS/SLES, phosphates, chlorine bleach, or artificial preservatives. What you see on the label is everything in the bottle.</span>
+        </div>
+      </div>
+
+      <!-- HOW IT WORKS -->
+      <div class="tab-body${S.tab==='hiw'?' on':''}">
+        <div class="hiw-list">
+          ${p.hiw.map(([t,d],i)=>`<div class="hiw-item"><div class="hiw-n">${i+1}</div><div><h5>${t}</h5><p>${d}</p></div></div>`).join('')}
+        </div>
+      </div>
+
+      <!-- VALIDITY -->
+      <div class="tab-body${S.tab==='valid'?' on':''}">
+        <p style="font-size:.85rem;color:var(--text2);line-height:1.8;margin-bottom:1.1rem">${p.valid}</p>
+        <div class="info-box cream">
+          <div style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);margin-bottom:.4rem">Shelf Life — ${Math.round(p.days/30)} Months</div>
+          <div class="shelf-bar"><div class="shelf-fill" style="width:${Math.min(100,Math.round(p.days/730*100))}%"></div></div>
+          <div style="font-size:.7rem;color:var(--text3);margin-top:.4rem">Manufacture date printed on bottle base. Batch-coded for full traceability.</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1rem">
+          <div class="info-box green"><strong>✅ Store</strong><br><span style="font-size:.78rem">Cool, dark place · Below 30°C · Away from direct sunlight</span></div>
+          <div class="info-box gold"><strong>⚠️ Avoid</strong><br><span style="font-size:.78rem">Heat above 40°C · Direct sunlight · Freezing temperatures</span></div>
+        </div>
+      </div>
+
+      <!-- DELIVERY -->
+      <div class="tab-body${S.tab==='del'?' on':''}">
+        <p style="font-size:.85rem;color:var(--text2);line-height:1.8;margin-bottom:1rem">${p.del}</p>
+        <div class="del-list">
+          ${['Free delivery on all orders above ₹499','Same-day dispatch on orders placed before 2 PM (Mon–Sat)','1–3 business days delivery pan-India','Tracking link sent to your WhatsApp after dispatch','Secure, eco-friendly minimal packaging used throughout','Bulk 5L+ orders packed in reinforced double-wall cartons'].map(d=>`<div class="del-row">${d}</div>`).join('')}
+        </div>
+        <div class="info-box cream" style="margin-top:1.2rem">
+          <strong>📍 Delivery Address</strong><br>
+          <span style="font-size:.8rem;color:var(--text2)">Your delivery address is captured securely at checkout. You can save multiple addresses — home, office, or gift recipient.</span><br>
+          <button class="btn btn-green btn-sm" style="margin-top:.7rem" onclick="addCart({id:'${p.id}',name:'${p.name}',emoji:'${p.emoji}'},'${sv}',${price},${qty});go('cart')">Enter Address in Cart →</button>
+        </div>
+      </div>
+
+      <!-- PAYMENT -->
+      <div class="tab-body${S.tab==='pay'?' on':''}">
+        <p style="font-size:.85rem;color:var(--text2);margin-bottom:1rem">All major payment methods accepted. All digital payments are secure and encrypted.</p>
+        <div class="pay-opts">
+          ${[['📱','UPI (GPay, PhonePe, Paytm)','Instant · Zero charges · Most preferred'],
+             ['💳','Credit / Debit Card','Visa, Mastercard, RuPay — all accepted'],
+             ['🏦','Net Banking','All major Indian banks supported'],
+             ['💵','Cash on Delivery','Pay on arrival · ₹30 handling fee'],
+             ['💬','WhatsApp Pay','Order & pay via WhatsApp']].map(([ic,nm,ds])=>`
+          <div class="pay-opt"><span>${ic}</span><div><strong>${nm}</strong><br><span style="font-size:.7rem;color:var(--text3)">${ds}</span></div></div>`).join('')}
+        </div>
+        <div class="info-box green" style="margin-top:1rem">🔒 <strong>100% Secure Payments.</strong> Your details are never stored on our servers. All transactions via encrypted gateways.</div>
+      </div>
+
+      <!-- VOLUME PRICING -->
+      <div class="tab-body${S.tab==='vol'?' on':''}">
+        <p style="font-size:.84rem;color:var(--text2);margin-bottom:1.1rem">Buy more, save more. Click a row to select that size. 🔥 = best value pack.</p>
+        <table class="vol-tbl" style="margin-bottom:1.2rem">
+          <thead><tr><th>Volume</th><th>Price</th><th>Per Unit</th><th>Best For</th></tr></thead>
+          <tbody>
+            ${p.vols.map(([v,vp,best],i)=>{
+              const use=['Trial / Single use','Regular household','Large family','Monthly bulk','Commercial / Restaurant'][Math.min(i,4)];
+              return`<tr class="${best?'best':''}" onclick="selVol('${p.id}','${v}',${vp})"><td><strong>${v}</strong></td><td>₹${vp}</td><td>${i===0?'Base':'Save vs small'}</td><td>${use}</td></tr>`
+            }).join('')}
+          </tbody>
+        </table>
+        <div class="info-box gold"><strong>🏪 Bulk / Commercial Orders</strong> — Restaurants, hotels & kitchens: call <strong>+91 83670 66110</strong> for custom 10L+ pricing and special rates.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="sec-sm sec-cream">
+  <h3 style="font-family:'Playfair Display',serif;color:var(--brown);margin-bottom:1.3rem">More Bio Enzyme Products</h3>
+  <div class="related-row">
+    ${PRODUCTS.filter(x=>x.id!==p.id).slice(0,5).map(r=>`
+    <div class="rel-card" onclick="go('product','${r.id}')">
+      <div class="rel-em">${r.emoji}</div>
+      <div class="rel-name">${r.name}</div>
+      <div class="rel-price">From ₹${r.price}</div>
+    </div>`).join('')}
+  </div>
+</div>
+</div>
+${footerHTML()}`
+}
+
+function selVol(id,vol,price){S.selVol[id]=vol;render()}
+function chgQty(id,d){S.selQty[id]=Math.max(1,(S.selQty[id]||1)+d);render()}
+function setTab(t){S.tab=t;render()}
+
+/* ═══════════════════════════
+   CART PAGE
+═══════════════════════════ */
+function cartHTML(){
+  const items=S.cart;
+  const sub=cartSub();
+  const del=sub>=499?0:50;
+  const tot=sub+del;
+  const addr=S.addr||{};
+
+  return`${navHTML()}
+<div class="cart-page">
+  <h1 style="font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--brown);margin-bottom:1.8rem">
+    🛒 Your Cart ${items.length?`<span style="font-size:1rem;color:var(--text3);font-family:'Nunito',sans-serif">(${cartCount()} items)</span>`:''}
+  </h1>
+  ${!items.length?`<div class="empty-state">
+    <div class="es-em">🛒</div>
+    <h3>Your cart is empty</h3>
+    <p>Browse our bio enzyme products and add something natural!</p>
+    <button class="btn btn-green" style="margin-top:1.2rem" onclick="go('home')">🌿 Shop Products</button>
+  </div>`:`
+  <div class="cart-layout">
+    <div>
+      <div class="cart-items-list">
+        ${items.map(it=>`<div class="c-item">
+          <div class="c-em">${it.emoji}</div>
+          <div class="c-info">
+            <div class="c-name">${it.name}</div>
+            <div class="c-vol">Size: ${it.vol}</div>
+            <div class="c-price">₹${it.price} <span style="font-size:.72rem;color:var(--text3);font-weight:400">each</span></div>
+            <div class="c-row">
+              <div class="qty-wrap">
+                <button class="q-btn" onclick="updQty('${it.id}','${it.vol}',${it.qty-1})">−</button>
+                <span class="q-val">${it.qty}</span>
+                <button class="q-btn" onclick="updQty('${it.id}','${it.vol}',${it.qty+1})">+</button>
+              </div>
+              <div style="display:flex;align-items:center;gap:1rem">
+                <strong style="font-family:'Playfair Display',serif;color:var(--g1)">₹${it.price*it.qty}</strong>
+                <button class="c-remove" onclick="remCart('${it.id}','${it.vol}')">✕ Remove</button>
+              </div>
+            </div>
+          </div>
+        </div>`).join('')}
+      </div>
+      <button class="btn btn-outline btn-sm" onclick="go('home')" style="margin-top:1rem">← Continue Shopping</button>
+    </div>
+
+    <!-- SUMMARY + ADDRESS -->
+    <div class="cart-sum">
+      <h3>Order Summary</h3>
+      <div class="sum-row"><span>Subtotal (${cartCount()} items)</span><span>₹${sub}</span></div>
+      <div class="sum-row${del===0?' sum-free':''}"><span>Delivery</span><span>${del===0?'FREE':'₹'+del}</span></div>
+      ${del>0?`<div style="font-size:.7rem;color:var(--g2);margin-bottom:.4rem">Add ₹${499-sub} more for FREE delivery!</div>`:''}
+      <div class="sum-row sum-total"><span>Total</span><span>₹${tot}</span></div>
+
+      <!-- ADDRESS FORM -->
+      <div class="addr-sec">
+        <h4>📍 Delivery Address</h4>
+        <div class="form-row2">
+          <div class="fg"><label class="fl">First Name *</label><input class="fi" id="fn" placeholder="Ravi" value="${addr.fn||''}"></div>
+          <div class="fg"><label class="fl">Last Name *</label><input class="fi" id="ln" placeholder="Kumar" value="${addr.ln||''}"></div>
+        </div>
+        <div class="fg"><label class="fl">Mobile Number *</label><input class="fi" id="mob" placeholder="+91 98765 43210" value="${addr.mob||''}"></div>
+        <div class="fg"><label class="fl">House / Flat / Building *</label><input class="fi" id="l1" placeholder="Flat 301, Green Towers" value="${addr.l1||''}"></div>
+        <div class="fg"><label class="fl">Street / Area / Landmark *</label><input class="fi" id="l2" placeholder="MG Road, Banjara Hills" value="${addr.l2||''}"></div>
+        <div class="form-row2">
+          <div class="fg"><label class="fl">City *</label><input class="fi" id="city" placeholder="Hyderabad" value="${addr.city||''}"></div>
+          <div class="fg"><label class="fl">PIN Code *</label><input class="fi" id="pin" placeholder="500034" value="${addr.pin||''}"></div>
+        </div>
+        <div class="fg">
+          <label class="fl">State *</label>
+          <select class="fs" id="state">
+            <option value="">Select State</option>
+            ${STATES.map(s=>`<option value="${s}"${addr.state===s?' selected':''}>${s}</option>`).join('')}
+          </select>
+        </div>
+        <div class="fg"><label class="fl">Delivery Instructions (optional)</label><textarea class="fta" id="note" placeholder="Leave at security, call before delivery...">${addr.note||''}</textarea></div>
+        <span class="map-link" onclick="locateMe()">📍 Auto-locate my address on map</span>
+      </div>
+
+      <button class="btn btn-green btn-full btn-lg" style="margin-top:1.2rem" onclick="toPayment()">Proceed to Payment →</button>
+      <div style="text-align:center;font-size:.7rem;color:var(--text3);margin-top:.6rem">🔒 Secure checkout · Your data is safely stored locally</div>
+    </div>
+  </div>`}
+</div>
+${footerHTML()}`
+}
+
+function locateMe(){
+  if(!navigator.geolocation){toast('Location not supported in this browser');return}
+  toast('📍 Getting your location...');
+  navigator.geolocation.getCurrentPosition(pos=>{
+    toast('📍 Location found! Opening map...');
+    window.open(`https://maps.google.com?q=${pos.coords.latitude},${pos.coords.longitude}`,'_blank');
+  },()=>toast('❌ Location access denied. Please fill address manually.'));
+}
+
+function toPayment(){
+  const fn=document.getElementById('fn')?.value.trim();
+  const ln=document.getElementById('ln')?.value.trim();
+  const mob=document.getElementById('mob')?.value.trim();
+  const l1=document.getElementById('l1')?.value.trim();
+  const l2=document.getElementById('l2')?.value.trim();
+  const city=document.getElementById('city')?.value.trim();
+  const pin=document.getElementById('pin')?.value.trim();
+  const state=document.getElementById('state')?.value;
+  const note=document.getElementById('note')?.value.trim();
+  if(!fn||!ln||!mob||!l1||!city||!pin||!state){toast('❌ Please fill all required (*) fields');return}
+  if(!/^\d{10}$/.test(mob.replace(/\D/g,''))){toast('❌ Please enter a valid 10-digit mobile number');return}
+  if(!/^\d{6}$/.test(pin)){toast('❌ Please enter a valid 6-digit PIN code');return}
+  saveAddr({fn,ln,mob,l1,l2,city,pin,state,note});
+  go('payment');
+}
+
+/* ═══════════════════════════
+   PAYMENT PAGE
+═══════════════════════════ */
+function paymentHTML(){
+  if(!S.cart.length){go('home');return''}
+  const sub=cartSub();
+  const del=sub>=499?0:50;
+  const codFee=S.payM==='cod'?30:0;
+  const tot=sub+del+codFee;
+  const addr=S.addr||{};
+  const methods=[
+    {id:'upi',icon:'📱',name:'UPI Payment',desc:'GPay, PhonePe, Paytm — instant transfer'},
+    {id:'card',icon:'💳',name:'Credit / Debit Card',desc:'Visa, Mastercard, RuPay — all accepted'},
+    {id:'netbank',icon:'🏦',name:'Net Banking',desc:'All major Indian banks'},
+    {id:'cod',icon:'💵',name:'Cash on Delivery',desc:'Pay on arrival · ₹30 handling fee extra'},
+    {id:'wa',icon:'💬',name:'WhatsApp Pay',desc:'Pay link sent to your WhatsApp'},
+  ];
+
+  return`${navHTML()}
+<div class="pay-page">
+  <div class="progress-bar">
+    <span class="pb-step done">✓ Cart</span><span class="pb-sep">──</span>
+    <span class="pb-step done">✓ Address</span><span class="pb-sep">──</span>
+    <span class="pb-step now">💳 Payment</span><span class="pb-sep">──</span>
+    <span class="pb-step">Confirmation</span>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.8rem">
+    <button class="btn btn-outline btn-sm" onclick="go('cart')">← Back to Cart</button>
+    <h1 style="font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--brown)">Secure Payment</h1>
+  </div>
+
+  <div class="pay-layout">
+    <div>
+      <h3 style="font-family:'Playfair Display',serif;color:var(--brown);margin-bottom:1rem">Choose Payment Method</h3>
+      <div class="pm-list">
+        ${methods.map(m=>`<div class="pm-opt${S.payM===m.id?' on':''}" onclick="setPayM('${m.id}')">
+          <input type="radio" name="pm"${S.payM===m.id?' checked':''}>
+          <span class="pm-icon">${m.icon}</span>
+          <div class="pm-info"><h5>${m.name}</h5><p>${m.desc}</p></div>
+        </div>`).join('')}
+      </div>
+
+      ${S.payM==='upi'?`<div class="info-box green" style="margin-bottom:1.2rem">
+        <strong>Enter UPI ID</strong><br>
+        <input class="fi" style="margin:.6rem 0" id="upi-id" placeholder="yourname@gpay or 9876543210@paytm">
+        <div style="font-size:.7rem;color:var(--g1)">Or scan QR code shown on next screen after placing order.</div>
+      </div>`:S.payM==='card'?`<div class="info-box cream" style="margin-bottom:1.2rem">
+        <div class="fg"><label class="fl">Card Number</label><input class="fi" placeholder="1234 5678 9012 3456" maxlength="19"></div>
+        <div class="form-row2">
+          <div class="fg"><label class="fl">Expiry (MM/YY)</label><input class="fi" placeholder="12/27" maxlength="5"></div>
+          <div class="fg"><label class="fl">CVV</label><input class="fi" placeholder="•••" maxlength="3" type="password"></div>
+        </div>
+        <div class="fg"><label class="fl">Name on Card</label><input class="fi" placeholder="RAVI KUMAR"></div>
+      </div>`:S.payM==='cod'?`<div class="info-box gold" style="margin-bottom:1.2rem">💵 Cash on Delivery is available. A <strong>₹30 handling fee</strong> has been added to your total. Please keep exact change ready for the delivery partner.</div>`:`<div class="info-box green" style="margin-bottom:1.2rem">✓ You will receive a secure payment link on your registered WhatsApp / SMS after order placement.</div>`}
+
+      <div class="info-box cream" style="margin-bottom:1.5rem">
+        <strong>📍 Delivering to:</strong><br>
+        <span style="font-size:.8rem;color:var(--text2)">${addr.fn||'—'} ${addr.ln||''}, ${addr.l1||'—'}, ${addr.l2?addr.l2+', ':''} ${addr.city||'—'} – ${addr.pin||'—'}, ${addr.state||'—'}<br>📱 ${addr.mob||'—'}</span><br>
+        <button onclick="go('cart')" style="font-size:.72rem;color:var(--g1);font-weight:700;background:none;border:none;cursor:pointer;margin-top:.4rem">✎ Change Address</button>
+      </div>
+
+      <button class="btn btn-green btn-full btn-xl" onclick="placeOrder()">
+        🎉 Place Order — ₹${tot}
+      </button>
+      <div style="text-align:center;font-size:.7rem;color:var(--text3);margin-top:.6rem">🔒 128-bit SSL encrypted · 100% secure payment</div>
+    </div>
+
+    <!-- ORDER SUMMARY PANEL -->
+    <div class="pay-sum">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--brown);margin-bottom:1rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)">Order Summary</h3>
+      ${S.cart.map(it=>`<div class="pay-item">
+        <span class="pay-em2">${it.emoji}</span>
+        <div style="flex:1"><div style="font-size:.82rem;font-weight:700;color:var(--brown)">${it.name}</div><div style="font-size:.7rem;color:var(--text3)">${it.vol} × ${it.qty}</div></div>
+        <strong style="font-family:'Playfair Display',serif;color:var(--g1)">₹${it.price*it.qty}</strong>
+      </div>`).join('')}
+      <div style="margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--border)">
+        <div class="sum-row"><span>Subtotal</span><span>₹${sub}</span></div>
+        <div class="sum-row${del===0?' sum-free':''}"><span>Delivery</span><span>${del===0?'FREE':'₹'+del}</span></div>
+        ${codFee?`<div class="sum-row"><span>COD Fee</span><span>₹${codFee}</span></div>`:''}
+        <div class="sum-row sum-total"><span>Grand Total</span><span>₹${tot}</span></div>
+      </div>
+      <div class="info-box green" style="margin-top:1.2rem;font-size:.75rem">🌿 Every purchase supports zero-waste bio enzyme production and sustainable farming in India.</div>
+    </div>
+  </div>
+</div>
+${footerHTML()}`
+}
+
+function setPayM(m){S.payM=m;render()}
+
+function placeOrder(){
+  if(!S.addr){toast('❌ Please go back and enter your delivery address');return}
+  const orderId='VID'+Date.now().toString().slice(-8);
+  const sub=cartSub();
+  const del=sub>=499?0:50;
+  const codFee=S.payM==='cod'?30:0;
+  const d=new Date();d.setDate(d.getDate()+3);
+  const order={
+    id:orderId,items:[...S.cart],address:{...S.addr},payM:S.payM,
+    sub,del,codFee,tot:sub+del+codFee,status:'Confirmed',
+    placed:new Date().toISOString(),
+    estDelivery:d.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'})
+  };
+  S.orders.push(order);saveOrders();
+  S.cart=[];saveCart();
+  S.confId=orderId;
+  go('confirm');
+}
+
+/* ═══════════════════════════
+   ORDER CONFIRMATION
+═══════════════════════════ */
+function confirmHTML(){
+  const ord=S.orders.find(o=>o.id===S.confId)||S.orders[S.orders.length-1];
+  if(!ord)return homeHTML();
+  const a=ord.address;
+  const payLabels={upi:'UPI Payment',card:'Credit / Debit Card',netbank:'Net Banking',cod:'Cash on Delivery',wa:'WhatsApp Pay'};
+  return`${navHTML()}
+<div class="conf-page">
+  <span class="conf-icon">🎉</span>
+  <h1 style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--brown)">Order Confirmed!</h1>
+  <p style="color:var(--text2);margin:.5rem 0 .8rem;line-height:1.7">Thank you for choosing Vidhatri Bio Enzyme Products. Your order has been received and is being prepared with love.</p>
+  <div class="conf-id">${ord.id}</div>
+  <p style="font-size:.75rem;color:var(--text3);margin-bottom:1.8rem">Save this order ID for tracking your delivery</p>
+
+  <div class="conf-details">
+    <div class="conf-row"><span>Order Date</span><strong>${new Date(ord.placed).toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}</strong></div>
+    <div class="conf-row"><span>Expected Delivery</span><strong style="color:var(--g1)">${ord.estDelivery}</strong></div>
+    <div class="conf-row"><span>Payment Method</span><strong>${payLabels[ord.payM]||ord.payM}</strong></div>
+    <div class="conf-row"><span>Order Total</span><strong style="color:var(--g1)">₹${ord.tot}</strong></div>
+    <div class="conf-row"><span>Delivery Address</span><strong>${a.fn} ${a.ln}, ${a.l1}, ${a.l2?a.l2+', ':''}${a.city} – ${a.pin}, ${a.state}</strong></div>
+    <div class="conf-row"><span>Mobile</span><strong>${a.mob}</strong></div>
+    ${a.note?`<div class="conf-row"><span>Instructions</span><strong>${a.note}</strong></div>`:''}
+  </div>
+
+  <div style="background:var(--cream2);border-radius:var(--r2);padding:1.2rem;margin:1.4rem 0;text-align:left">
+    <p style="font-weight:800;color:var(--brown);margin-bottom:.7rem;font-family:'Playfair Display',serif">Items Ordered</p>
+    ${ord.items.map(it=>`<div style="display:flex;align-items:center;gap:.65rem;padding:.45rem 0;border-bottom:1px solid var(--border);font-size:.83rem"><span>${it.emoji}</span><span style="flex:1;color:var(--text2)">${it.name} (${it.vol}) × ${it.qty}</span><strong style="color:var(--g1)">₹${it.price*it.qty}</strong></div>`).join('')}
+    <div style="display:flex;justify-content:space-between;font-weight:800;font-size:.9rem;margin-top:.7rem;color:var(--brown)"><span>Total Paid</span><span>₹${ord.tot}</span></div>
+  </div>
+
+  <div class="info-box green" style="margin-bottom:1.5rem;text-align:left">
+    📱 A confirmation SMS and WhatsApp message with tracking details will be sent to <strong>${a.mob}</strong> shortly.
+  </div>
+
+  <div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap">
+    <button class="btn btn-green btn-lg" onclick="go('home')">🌿 Continue Shopping</button>
+    <button class="btn btn-outline" onclick="toast('📞 Calling +91 83670 66110 for support')">📞 Need Help?</button>
+  </div>
+
+  <div class="info-box cream" style="margin-top:2rem;font-size:.77rem;text-align:left">
+    🌱 <strong>Thank you for choosing chemical-free.</strong> Every Vidhatri purchase supports zero-waste fermentation, rescued ingredient sourcing, and sustainable production in India. You're making a real difference.
+  </div>
+</div>
+${footerHTML()}`
+}
+
+/* ═══════════════════════════
+   RENDER
+═══════════════════════════ */
+function render(){
+  const app=document.getElementById('app');
+  if(S.page==='home') app.innerHTML=homeHTML();
+  else if(S.page==='product') app.innerHTML=productHTML();
+  else if(S.page==='cart') app.innerHTML=cartHTML();
+  else if(S.page==='payment') app.innerHTML=paymentHTML();
+  else if(S.page==='confirm') app.innerHTML=confirmHTML();
+}
+
+/* Scroll nav effect */
+window.addEventListener('scroll',()=>{
+  const was=S.scrolled;S.scrolled=window.scrollY>50;
+  if(was!==S.scrolled){
+    const nav=document.querySelector('.nav');
+    if(nav){nav.classList.toggle('scrolled',S.scrolled)}
+  }
+},{ passive:true });
+
+render();
+</script>
+</body>
+</html>
